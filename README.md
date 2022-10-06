@@ -3,7 +3,7 @@ Outputs for Data Structures and Applications
 
 ## Cloning branch
 ```shell
-git clone https://github.com/ArJSarmiento/CPIC-Hotel.git
+git clone https://github.com/ArJSarmiento/CMSC-122-Outputs.git
 ```
 
 ## Before making changes in dev-branch
