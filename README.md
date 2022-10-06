@@ -17,6 +17,7 @@ git push # push changes to the cloud
 
 ## After making changes in dev-branch
 ```shell
+# Commit and push changes to dev-branch with commit message in the vscode git GUI
 git pull origin main  # merges main branch with current branch
 git push  # push changes to the cloud 
 git checkout main   # change branch to main
