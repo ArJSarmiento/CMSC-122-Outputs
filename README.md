@@ -1,21 +1,21 @@
 # CMSC-122-Outputs
 Outputs for Data Structures and Applications
 
-# Cloning branch
+## Cloning branch
 ```shell
 git clone https://github.com/ArJSarmiento/CPIC-Hotel.git
 ```
 
-# Before making changes in dev-branch
+## Before making changes in dev-branch
 ```shell
 git checkout dev-branch # go to dev-branch
 git pull origin main # merges main branch with current branch
 git push # push changes to the cloud 
 ```
 
-# Make changes
+## Make changes
 
-# After making changes in dev-branch
+## After making changes in dev-branch
 ```shell
 git pull origin main  # merges main branch with current branch
 git push  # push changes to the cloud 
