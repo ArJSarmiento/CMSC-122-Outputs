@@ -8,19 +8,20 @@ git clone https://github.com/ArJSarmiento/CPIC-Hotel.git
 
 # Before making changes in dev-branch
 ```shell
-git pull origin main
-git push
+git checkout dev-branch # go to dev-branch
+git pull origin main # merges main branch with current branch
+git push # push changes to the cloud 
 ```
 
 # Make changes
 
 # After making changes in dev-branch
 ```shell
-git pull origin main
-git push
-git checkout main
-git pull
-git merge dev-branch
-git push
-git checkout dev-branch
+git pull origin main  # merges main branch with current branch
+git push  # push changes to the cloud 
+git checkout main   # change branch to main
+git pull  # get recent changes 
+git merge dev-branch  # merge changes from dev-branch
+git push # push changes to the cloud 
+git checkout dev-branch # return to dev-branch
 ```
