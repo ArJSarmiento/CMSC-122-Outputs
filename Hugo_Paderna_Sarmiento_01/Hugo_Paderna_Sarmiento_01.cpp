@@ -5,7 +5,8 @@ using namespace std;
 // for string class
 #include <string>
 
-int main()
+// displays the program summary
+void summary()
 {
     cout << "\nList MENU"
          << "\n\t[1]Add Item"
@@ -16,6 +17,11 @@ int main()
          << "\n\t[0]Exit Program"
          << "\nEnter choice: "
          << endl;
+}
+
+int main()
+{
+    summary(); 
 
     return 0;
 }
