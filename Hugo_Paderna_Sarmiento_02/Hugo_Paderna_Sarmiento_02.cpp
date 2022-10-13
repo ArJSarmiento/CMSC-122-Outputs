@@ -6,25 +6,26 @@ using namespace std;
 #include <string>
 
 // Type Node definition
-class Node {
-   public:
+class Node
+{
+public:
     int data;
-    Node* nextNode;
-    Node* prevNode;
+    Node *nextNode;
+    Node *prevNode;
 };
 
 void summary();
-void add_item(Node headptr);
-Node insert_start(Node headptr, int value);
-Node insert_end(Node headptr, int value);
-Node insert_specific_position(Node headptr, int value);
-Node delete_item(Node headptr);
+Node *add_item(Node *headptr);
+Node *insert_start(Node *headptr, int value);
+Node *insert_end(Node *headptr, int value);
+Node *insert_specific_position(Node *headptr, int value);
+Node *delete_item(Node *headptr);
 void display_list(Node *head);
 int list_length(Node headptr);
 
 int main()
 {
-    Node head; // indicates an empty list
+    Node *head = NULL; // indicates an empty list
 
     int choice, value;
 
@@ -33,48 +34,49 @@ int main()
         summary();
 
         cin >> choice;
-        switch (choice) 
+        switch (choice)
         {
-            case 1:
-                add_item(head); 
-                break; 
-            case 2:
-                
-                break;
-            case 3:
-                display_list(&head);
-                break;
-            case 4:
-               
-                break;
-            case 5:
-               
-                break;
-            case 0:
-                cout <<  "\nExiting program";
+        case 1:
+            head = add_item(head);
+            break;
+        case 2:
+
+            break;
+        case 3:
+            display_list(head);
+            break;
+        case 4:
+
+            break;
+        case 5:
+
+            break;
+        case 0:
+            cout << "\nExiting program";
         }
     }
 
     return 0;
 }
 
-void summary(){
+void summary()
+{
     cout << "\nList MENU"
-        << "\n\t[1]Add Item"
-        << "\n\t[2]Delete Item"
-        << "\n\t[3]Display List"
-        << "\n\t[4]Delete List"
-        << "\n\t[5]Search Item"
-        << "\n\t[0]Exit Program"
-        << "\nEnter choice: "
-        << endl;
+         << "\n\t[1]Add Item"
+         << "\n\t[2]Delete Item"
+         << "\n\t[3]Display List"
+         << "\n\t[4]Delete List"
+         << "\n\t[5]Search Item"
+         << "\n\t[0]Exit Program"
+         << "\nEnter choice: "
+         << endl;
 }
 
-void add_item(Node headptr)
+Node *add_item(Node *headptr)
 {
     int choice, value;
 
-    if (&headptr==NULL) // if the list is empty, inform the user
+    if (headptr == NULL) // if the list is empty, inform the user
     {
         cout << "\nThe list is empty. You may not add an element at the end of the list.\n";
     }
@@ -82,54 +84,53 @@ void add_item(Node headptr)
     cout << "\nPlease enter the item to be added: ";
     cin >> value;
 
-    cout <<"\nWhere to add the item?"
-         <<"\n\t[1]Start of the list"
-         <<"\n\t[2]End of the list"
-         <<"\n\t[3]Specific position"
-         <<"\n\t[0]Cancel"
-         <<"\nEnter choice: ";
+    cout << "\nWhere to add the item?"
+         << "\n\t[1]Start of the list"
+         << "\n\t[2]End of the list"
+         << "\n\t[3]Specific position"
+         << "\n\t[0]Cancel"
+         << "\nEnter choice: ";
 
     cin >> choice;
 
     switch (choice)
     {
-        case 1:
-            insert_start(headptr, value);
-            break;
-        case 2:
-            insert_end(headptr, value);
-            break;
-        case 3:
-            insert_specific_position(headptr, value);
-            break;
-        case 0:
-            break;
+    case 1:
+        return insert_start(headptr, value);
+    case 2:
+        return insert_end(headptr, value);
+    case 3:
+        return insert_specific_position(headptr, value);
+    case 0:
+        break;
     }
+
+    return headptr;
 }
 
-Node insert_start(Node headptr, int value)
+Node *insert_start(Node *headptr, int value)
 {
     Node *ptr = new Node(); // allocates memory for new node instance
 
     ptr->data = value;
-    ptr->nextNode = &headptr; // links ptr to the prev head
-    ptr->prevNode = NULL;     // ptr has no previous node
-    headptr = *ptr;           // ptr becomes new head
+    ptr->nextNode = headptr; // links ptr to the prev head
+    ptr->prevNode = NULL;    // ptr has no previous node
+    headptr = ptr;           // ptr becomes new head
     return headptr;
 }
 
-Node insert_end(Node headptr, int value)
+Node *insert_end(Node *headptr, int value)
 {
     // guard clause for empty list
-    if (&headptr == NULL)
+    if (headptr == NULL)
     {
-        cout <<"\nThe list is empty. You may not add an element at the end of the list.\n";
+        cout << "\nThe list is empty. You may not add an element at the end of the list.\n";
         return headptr;
     }
 
     Node *temp_node, *ptr;
 
-    ptr = &headptr;
+    ptr = headptr;
     temp_node = new Node();
 
     temp_node->data = value;
@@ -142,10 +143,12 @@ Node insert_end(Node headptr, int value)
 
     temp_node->prevNode = ptr;
     ptr->nextNode = temp_node;
+
+    return headptr;
 }
 
 // this function adds an element at a specific position in the list
-Node insert_specific_position(Node headptr, int value)
+Node *insert_specific_position(Node *headptr, int value)
 {
     // guard clause for empty list
     if (&headptr == NULL)
@@ -161,7 +164,7 @@ Node insert_specific_position(Node headptr, int value)
     cout << "\nWhich position do you want the element to be added to? ";
     cin >> key;
 
-    Node *ptr = &headptr;
+    Node *ptr = headptr;
     Node *ptr2 = new Node();
     ptr2->data = value;
     ptr2->nextNode = NULL;
@@ -172,12 +175,12 @@ Node insert_specific_position(Node headptr, int value)
         return headptr;
     }
 
-    len = list_length(headptr);
+    len = list_length(*headptr);
     // if the position doesn't exist
     if (key < 1 || key > len + 1)
     {
-        insert_end(*ptr, value);
-        return *ptr;
+        insert_end(ptr, value);
+        return ptr;
     }
 
     key--;
@@ -191,6 +194,7 @@ Node insert_specific_position(Node headptr, int value)
     ptr2->prevNode = ptr;
     ptr->nextNode->prevNode = ptr2;
     ptr->nextNode = ptr2;
+    return headptr;
 }
 
 // this function returns the length of the list
@@ -224,10 +228,10 @@ void display_list(Node *head)
     do
     {
         i++;
-        cout << "\n%d.) %d", i, head->data;
+        cout << "\n"
+             << i << ".) " << head->data << endl;
         head = head->nextNode;
-    } while (head != NULL);
+    } while (head!=NULL);
     i++;
-    printf("\n");
-    return;
+    cout << "\n";
 }
