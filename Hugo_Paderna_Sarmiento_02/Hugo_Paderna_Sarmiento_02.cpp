@@ -14,16 +14,17 @@ class Node {
 };
 
 void summary();
-Node *add_item(Node **headptr);
-Node *insert_start(Node **headptr, int value);
-Node *insert_end(Node **headptr, int value);
-Node *insert_specific_position(Node **headptr, int value);
-Node *delete_item(Node **headptr);
-int list_length(Node **headptr);
+void add_item(Node headptr);
+Node insert_start(Node headptr, int value);
+Node insert_end(Node headptr, int value);
+Node insert_specific_position(Node headptr, int value);
+Node delete_item(Node headptr);
+void display_list(Node *head);
+int list_length(Node headptr);
 
 int main()
 {
-    Node* head = NULL; // indicates an empty list
+    Node head; // indicates an empty list
 
     int choice, value;
 
@@ -35,13 +36,13 @@ int main()
         switch (choice) 
         {
             case 1:
-                add_item(&head); 
+                add_item(head); 
                 break; 
             case 2:
                 
                 break;
             case 3:
-               
+                display_list(&head);
                 break;
             case 4:
                
@@ -69,11 +70,11 @@ void summary(){
         << endl;
 }
 
-Node *add_item(Node **headptr)
+void add_item(Node headptr)
 {
     int choice, value;
 
-    if ((headptr == NULL) || (*headptr == NULL)) // if the list is empty, inform the user
+    if (&headptr==NULL) // if the list is empty, inform the user
     {
         cout << "\nThe list is empty. You may not add an element at the end of the list.\n";
     }
@@ -106,18 +107,29 @@ Node *add_item(Node **headptr)
     }
 }
 
-Node *insert_end(Node **headptr, int value)
+Node insert_start(Node headptr, int value)
+{
+    Node *ptr = new Node(); // allocates memory for new node instance
+
+    ptr->data = value;
+    ptr->nextNode = &headptr; // links ptr to the prev head
+    ptr->prevNode = NULL;     // ptr has no previous node
+    headptr = *ptr;           // ptr becomes new head
+    return headptr;
+}
+
+Node insert_end(Node headptr, int value)
 {
     // guard clause for empty list
-    if ((headptr == NULL) || (*headptr == NULL))
+    if (&headptr == NULL)
     {
         cout <<"\nThe list is empty. You may not add an element at the end of the list.\n";
-        return *headptr;
+        return headptr;
     }
 
     Node *temp_node, *ptr;
 
-    ptr = *headptr;
+    ptr = &headptr;
     temp_node = new Node();
 
     temp_node->data = value;
@@ -133,15 +145,15 @@ Node *insert_end(Node **headptr, int value)
 }
 
 // this function adds an element at a specific position in the list
-Node *insert_specific_position(Node **headptr, int value)
+Node insert_specific_position(Node headptr, int value)
 {
     // guard clause for empty list
-    if ((headptr == NULL) || (*headptr == NULL))
+    if (&headptr == NULL)
     {
         cout << "\nThe list is empty. You may only add at the start of the list.\n"
              << "The element is now at position 1.\n";
         insert_start(headptr, value);
-        return *headptr;
+        return headptr;
     }
 
     int key, len;
@@ -149,7 +161,7 @@ Node *insert_specific_position(Node **headptr, int value)
     cout << "\nWhich position do you want the element to be added to? ";
     cin >> key;
 
-    Node *ptr = *headptr;
+    Node *ptr = &headptr;
     Node *ptr2 = new Node();
     ptr2->data = value;
     ptr2->nextNode = NULL;
@@ -157,15 +169,15 @@ Node *insert_specific_position(Node **headptr, int value)
     if (key == 1)
     {
         insert_start(headptr, value);
-        return *headptr;
+        return headptr;
     }
 
     len = list_length(headptr);
     // if the position doesn't exist
     if (key < 1 || key > len + 1)
     {
-        insert_end(&ptr, value);
-        return ptr;
+        insert_end(*ptr, value);
+        return *ptr;
     }
 
     key--;
@@ -182,10 +194,10 @@ Node *insert_specific_position(Node **headptr, int value)
 }
 
 // this function returns the length of the list
-int list_length(Node **headptr)
+int list_length(Node headptr)
 {
     Node *ptr;
-    ptr = *headptr;
+    ptr = &headptr;
     int len = 0;
 
     // iterates through list until it reaches the end
@@ -196,4 +208,26 @@ int list_length(Node **headptr)
     }
     // returns number of iterated nodes
     return len;
+}
+
+void display_list(Node *head)
+{
+    // guard clause for empty list
+    if (head == NULL)
+    {
+        cout << "\nThe list is empty.\n";
+        return;
+    }
+
+    // iterates through every node in the list and prints its data
+    int i = 0; // Counter
+    do
+    {
+        i++;
+        cout << "\n%d.) %d", i, head->data;
+        head = head->nextNode;
+    } while (head != NULL);
+    i++;
+    printf("\n");
+    return;
 }
