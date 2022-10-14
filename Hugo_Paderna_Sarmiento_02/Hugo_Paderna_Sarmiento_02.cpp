@@ -1,25 +1,19 @@
 // for standard I/O
 #include <iostream>
 using namespace std;
-
-// for string class
 #include <string>
+#include "Node.cpp"
 
-// Type Node definition
-class Node
-{
-public:
-    int data;
-    Node *nextNode;
-    Node *prevNode;
-};
-
+// function prototype declaration
 void summary();
 Node *add_item(Node *headptr);
 Node *insert_start(Node *headptr, int value);
 Node *insert_end(Node *headptr, int value);
 Node *insert_specific_position(Node *headptr, int value);
 Node *delete_item(Node *headptr);
+Node *delete_list(Node *headptr);
+void search_item(Node *headptr);
+int search_assist(Node *headptr, int val);
 void display_list(Node *head);
 int list_length(Node headptr);
 
@@ -40,16 +34,16 @@ int main()
             head = add_item(head);
             break;
         case 2:
-
+            head = delete_item(head);
             break;
         case 3:
             display_list(head);
             break;
         case 4:
-
+            head = delete_list(head);
             break;
         case 5:
-
+            search_item(head);
             break;
         case 0:
             cout << "\nExiting program";
@@ -231,7 +225,26 @@ void display_list(Node *head)
         cout << "\n"
              << i << ".) " << head->data << endl;
         head = head->nextNode;
-    } while (head!=NULL);
-    i++;
+    } while (head != NULL);
     cout << "\n";
+}
+
+Node *delete_item(Node *headptr)
+{
+
+}
+
+Node *delete_list(Node *headptr)
+{
+
+}
+
+void search_item(Node *headptr)
+{
+
+}
+
+int search_assist(Node *headptr, int val)
+{
+
 }
