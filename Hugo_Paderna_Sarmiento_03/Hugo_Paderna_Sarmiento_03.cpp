@@ -1,7 +1,7 @@
 #include "Stack.cpp"
 
 // function prototype declaration
-Stack *PUSH(Stack *stack, string kw);
+Stack *PUSH(string kw, Stack *stack);
 Stack *POP(Stack *stack);
 Stack *MAKENULL(Stack *stack);
 void TOP(Stack *stack);
@@ -37,7 +37,7 @@ int main()
         case 1:
             cout << "\nAdd kitchenware (ex. Plate, Bowl, etc.) to be washed: ";
             cin >> kitchenware;
-            stack = PUSH(stack, kitchenware);
+            stack = PUSH(kitchenware, stack);
             break; // this breaks from the switch(), not from the loop
         case 2:
             // stack = POP(stack);
@@ -66,7 +66,7 @@ bool EMPTY(Stack *stack)
     return stack->top == -1;
 }
 
-Stack *PUSH(Stack *stack, string kw)
+Stack *PUSH(string kw, Stack *stack)
 {
     if (FULL(stack))
     {

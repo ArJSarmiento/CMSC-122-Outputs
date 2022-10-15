@@ -1,5 +1,5 @@
 Assignment of Remaining Functionality
 
-Stack *POP(Stack *stack) - Rafa
+Queue *EMPTY(Queue *queue) - Rafa
 
-Stack *MAKENULL(Stack *stack) - Hyugs
+Queue *DEQUEUE(Queue *queue) - Hyugs

@@ -1,19 +1,20 @@
-#include "Stack.cpp"
+#include "Queue.cpp"
 
 // function prototype declaration
-Stack *PUSH(Stack *stack, string kw);
-Stack *POP(Stack *stack);
-Stack *MAKENULL(Stack *stack);
-void TOP(Stack *stack);
+Queue *INIT();
+Queue *EMPTY(Queue *queue);
+Node *FRONT(Queue *queue);
+Queue *ENQUEUE(Node *node, Queue *queue);
+Queue *DEQUEUE(Queue *queue);
 
 // displays the program summary
 void summary()
 {
-    cout <<"\nKitchenware Washing Machine"
-        <<"\n\t[1] Add kitchenware"
-        <<"\n\t[2] Wash kitchenware"
-        <<"\n\t[3] Top kitchenware"
-        <<"\n\t[4] Wash all"
+    cout <<"\nArthur's Fried Chicken Menu:"
+        <<"\n\t[1] Fall in line"
+        <<"\n\t[2] Serve order"
+        <<"\n\t[3] Next order"
+        <<"\n\t[4] Closing time"
         <<"\n\t[0] Exit"
         <<"\nEnter choice: "
         << endl;
@@ -21,10 +22,10 @@ void summary()
 
 int main()
 {
-    Stack *stack = new Stack(10); 
+    Queue *queue = INIT(); 
 
     int choice, value;
-    string kitchenware;
+    string name, order;
 
     for (choice = 6; choice != 0;)
     {
@@ -35,72 +36,69 @@ int main()
         switch (choice) // use switch flow control structure
         {
         case 1:
-            cout << "\nAdd kitchenware (ex. Plate, Bowl, etc.) to be washed: ";
-            cin >> kitchenware;
-            stack = PUSH(stack, kitchenware);
+        {
+            cout << "\nYour name: ";
+            cin >> name;
+            cout << "\nYour order: ";
+            cin >> order;
+            
+            Node *node = new Node(name, order);
+
+            queue = ENQUEUE(node, queue);
+        }
             break; // this breaks from the switch(), not from the loop
         case 2:
-            // stack = POP(stack);
             break;
         case 3:
-            TOP(stack);
+        {
+            Node *frontNode = FRONT(queue);
+            (frontNode!=NULL) ? 
+            cout << "\nNext order: " << frontNode->order << " of customer " << frontNode->name << ".\n" : 
+            cout << "\nThe QUEUE is EMPTY. No order to serve.\n";
+        }
             break;
         case 4:
-            // stack = MAKENULL(stack);
             break;
         case 0:
-            cout << "\nThe Washing Machine process has been terminated..."; // colorPrint adds color to the text; 12 corresponds to red
+            cout << "\nThe Washing Machine process has been terminated..."; 
         }
     }
 
     return 0;
 }
 
-bool FULL(Stack *stack)
+Queue *INIT()
 {
-    return stack->top >= stack->max;
+    return new Queue();
 }
 
-bool EMPTY(Stack *stack)
+Queue *ENQUEUE(Node *node, Queue *queue)
 {
-    return stack->top == -1;
-}
-
-Stack *PUSH(Stack *stack, string kw)
-{
-    if (FULL(stack))
+    if (queue->frontNode == NULL)
     {
-        cout << "\nThe STACK is FULL. Cannot add kitchenware.";
-        return stack;
+        queue->frontNode = node;
+        queue->rearNode = node;
+    }
+    else
+    {
+        queue->rearNode->nextNode = node;
+        queue->rearNode = node;
     }
 
-    stack->top++;
-    Node *node = new Node();
-    node->data = kw;
-    node->prevNode = stack->topNode;
-    stack->topNode = node;
-
-    cout << "\n" << kw << " has been added to the stack\n";
-    return stack;
+    return queue;
 }
 
-void TOP(Stack *stack)
+Node *FRONT(Queue *queue)
 {
-    if (EMPTY(stack))
-    {
-        cout << "\nThe STACK is EMPTY. No kitchenware to wash.";
-        return;
-    }
-
-    cout << "\n" << stack->topNode->data << " is next to be washed.\n";
+    return queue->frontNode;
 }
 
-Stack *POP(Stack *stack)
+Queue *EMPTY(Queue *queue)
 {
-    return stack;
+    return queue;
 }
 
-Stack *MAKENULL(Stack *stack)
+Queue *DEQUEUE(Queue *queue)
 {
-    return stack;
+    return queue;
 }

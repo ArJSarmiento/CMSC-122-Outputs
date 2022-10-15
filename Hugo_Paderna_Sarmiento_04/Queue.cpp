@@ -6,21 +6,27 @@ using namespace std;
 class Node
 {
 public:
-    string data;
-    Node *prevNode;
+    string name;
+    string order;
+    Node *nextNode;
+
+    Node(string name, string order)
+    {
+        this->name = name;
+        this->order = order;
+        this->nextNode = NULL;
+    }
 };
 
-class Stack
+class Queue
 {
 public:
-    int max;
-    Node *topNode;
-    int top;
+    Node *frontNode;
+    Node *rearNode;
 
-    Stack(int max)
+    Queue()
     {
-        this->max = max;
-        this->topNode = NULL;
-        this->top = -1;
+        this->frontNode = NULL;
+        this->rearNode = NULL;
     }
 };
