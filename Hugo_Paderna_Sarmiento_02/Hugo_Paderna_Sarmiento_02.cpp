@@ -229,14 +229,81 @@ void display_list(Node *head)
     cout << "\n";
 }
 
+// this function deletes an element in the list
 Node *delete_item(Node *headptr)
 {
+    int value, i;
 
+    // guard clause for empty list
+    if (headptr == NULL)
+    {
+        cout << "\nThe list is empty.\n";
+        return headptr;
+    }
+
+    cout << "\nPlease enter the item to be deleted: ";
+    cin >> value;
+
+    Node *ptr, *prev;
+    ptr = headptr;
+    prev = new Node();
+
+    // deletes item at start of list
+    if (ptr->data == value) 
+    {
+        headptr = ptr->nextNode;
+        free(ptr);
+
+        return headptr;
+    }
+
+    // determines position of item to be deleted
+    while (ptr->data != value)
+    {
+        prev = ptr;
+        ptr = ptr->nextNode;
+    }
+
+    // if item is not present in the list
+    if (ptr == NULL)
+    {
+        return headptr;
+    }
+
+    prev->nextNode = ptr->nextNode;
+    free (ptr);
+    return headptr;
 }
 
+// this function deletes the entire list
 Node *delete_list(Node *headptr)
 {
+    // guard clause for empty list
+    if (headptr == NULL)
+    {
+        cout << "\nThe list is empty.\n";
+        return headptr;
+    }
 
+    Node *temp_node, *ptr;
+
+    ptr = headptr;
+    temp_node = new Node();
+
+    temp_node->nextNode = NULL;
+
+    // delete every item as list is traversed through
+    while (ptr->nextNode != NULL)
+    {
+        temp_node = ptr->nextNode;
+        free(ptr);
+        ptr = temp_node;
+    }
+
+    cout << "\nThe list has been emptied.\n";
+
+    headptr = NULL;
+    return headptr;
 }
 
 void search_item(Node *headptr)
