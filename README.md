@@ -16,8 +16,14 @@ git push # push changes to the cloud
 ## Make changes
 
 ## After making changes in dev-branch
+### Commit and push changes to dev-branch with a commit message either in the vscode git GUI or with the commands...
 ```shell
-# Commit and push changes to dev-branch with commit message in the vscode git GUI
+git add .
+git commit -m "your commit message"
+git push
+```
+### Then...
+```shell
 git pull origin main  # merges main branch with current branch
 git push  # push changes to the cloud 
 git checkout main   # change branch to main
