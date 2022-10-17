@@ -106,11 +106,18 @@ Stack *POP(Stack *stack)
     cout << "\n" << stack->topNode->data << " is being washed.\n";
 
     Node *node = new Node(); // temporary node
-    
     node = stack->topNode;
+
+    if (node->prevNode == NULL) // clears old stack if last node is cleared
+    {
+        free(stack);
+        Stack *newStack = new Stack(10); 
+        return newStack;
+    }
+
     stack->topNode = node->prevNode;
     free(node);
-
+    
     return stack;
 }
 
