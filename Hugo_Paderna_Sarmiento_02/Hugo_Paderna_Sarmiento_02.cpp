@@ -12,8 +12,6 @@ Node *insert_end(Node *headptr, int value);
 Node *insert_specific_position(Node *headptr, int value);
 Node *delete_item(Node *headptr);
 Node *delete_list(Node *headptr);
-void search_item(Node *headptr);
-int search_assist(Node *headptr, int val);
 void display_list(Node *head);
 int list_length(Node headptr);
 
@@ -41,11 +39,6 @@ int main()
             break;
         case 4:
             head = delete_list(head);
-            break;
-        case 5:
-            search_item(head);
-            break;
-        case 0:
             cout << "\nExiting program";
         }
     }
@@ -60,7 +53,6 @@ void summary()
          << "\n\t[2]Delete Item"
          << "\n\t[3]Display List"
          << "\n\t[4]Delete List"
-         << "\n\t[5]Search Item"
          << "\n\t[0]Exit Program"
          << "\nEnter choice: "
          << endl;
@@ -304,14 +296,4 @@ Node *delete_list(Node *headptr)
 
     headptr = NULL;
     return headptr;
-}
-
-void search_item(Node *headptr)
-{
-
-}
-
-int search_assist(Node *headptr, int val)
-{
-
 }
