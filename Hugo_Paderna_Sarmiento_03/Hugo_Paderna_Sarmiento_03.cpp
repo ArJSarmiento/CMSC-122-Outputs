@@ -9,14 +9,14 @@ void TOP(Stack *stack);
 // displays the program summary
 void summary()
 {
-    cout <<"\nKitchenware Washing Machine"
+    cout <<"\n---------- Kitchenware Washing Machine ----------"
         <<"\n\t[1] Add kitchenware"
         <<"\n\t[2] Wash kitchenware"
         <<"\n\t[3] Top kitchenware"
         <<"\n\t[4] Wash all"
         <<"\n\t[0] Exit"
-        <<"\nEnter choice: "
         << endl;
+    cout << "\n\nEnter choice: ";
 }
 
 int main()
@@ -46,10 +46,10 @@ int main()
             TOP(stack);
             break;
         case 4:
-            // stack = MAKENULL(stack);
+            MAKENULL(stack);
             break;
         case 0:
-            cout << "\nThe Washing Machine process has been terminated..."; // colorPrint adds color to the text; 12 corresponds to red
+            cout << "\nThe Washing Machine process has been terminated...\n"; // colorPrint adds color to the text; 12 corresponds to red
         }
     }
 
@@ -70,7 +70,7 @@ Stack *PUSH(string kw, Stack *stack)
 {
     if (FULL(stack))
     {
-        cout << "\nThe STACK is FULL. Cannot add kitchenware.";
+        cout << "\nThe STACK is FULL. Cannot add kitchenware.\n";
         return stack;
     }
 
@@ -88,7 +88,7 @@ void TOP(Stack *stack)
 {
     if (EMPTY(stack))
     {
-        cout << "\nThe STACK is EMPTY. No kitchenware to wash.";
+        cout << "\nThe STACK is EMPTY. No kitchenware to wash.\n";
         return;
     }
 
@@ -99,7 +99,7 @@ Stack *POP(Stack *stack)
 {
     if (EMPTY(stack))
     {
-        cout << "\nThe STACK is EMPTY. No kitchenware to wash.";
+        cout << "\nThe STACK is EMPTY. No kitchenware to wash.\n";
         return stack;
     }
 
@@ -123,5 +123,27 @@ Stack *POP(Stack *stack)
 
 Stack *MAKENULL(Stack *stack)
 {
+    if (EMPTY(stack))
+    {
+        cout << "\nThe STACK is EMPTY. No kitchenware to wash.\n";
+        return stack;
+    }
+
+    Node *node = new Node(); // temporary node
+    do{
+        cout << "\n" << stack->topNode->data << " is being washed.\n";
+        node = stack->topNode;
+
+        if (node->prevNode == NULL) // clears old stack if last node is cleared
+        {
+            cout << "\nAll kitchenware has been washed.\n";
+            free(stack);
+            Stack *newStack = new Stack(10); 
+            return newStack;
+        }
+        stack->topNode = node->prevNode;
+        free(node);
+    } while (stack->topNode != NULL);
+
     return stack;
 }
