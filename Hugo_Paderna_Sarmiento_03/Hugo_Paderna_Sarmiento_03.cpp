@@ -40,7 +40,7 @@ int main()
             stack = PUSH(kitchenware, stack);
             break; // this breaks from the switch(), not from the loop
         case 2:
-            // stack = POP(stack);
+            stack = POP(stack);
             break;
         case 3:
             TOP(stack);
@@ -97,6 +97,20 @@ void TOP(Stack *stack)
 
 Stack *POP(Stack *stack)
 {
+    if (EMPTY(stack))
+    {
+        cout << "\nThe STACK is EMPTY. No kitchenware to wash.";
+        return stack;
+    }
+
+    cout << "\n" << stack->topNode->data << " is being washed.\n";
+
+    Node *node = new Node(); // temporary node
+    
+    node = stack->topNode;
+    stack->topNode = node->prevNode;
+    free(node);
+
     return stack;
 }
 
