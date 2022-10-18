@@ -1,0 +1,8 @@
+Assignment of Remaining Functionality
+
+[2] Delete item - Rafa
+[3] Search item - Rafa
+[4] Find maximum - Rafa
+[5] Find minimum - Francis
+[6] Find successor - Francis
+[7] Find predecessor - Francis
