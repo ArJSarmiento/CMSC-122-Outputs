@@ -1,0 +1,16 @@
+Assignment of Remaining Functionality
+
+[1]Add Item
+Start of the list Arnel
+End of the list Arnel
+Specific position Arnel
+
+[2]Delete Item Rafa
+
+[3]Display List Arnel
+
+[4]Delete List Rafa
+
+[5]Search Item Francis
+
+search_assist function  Francis

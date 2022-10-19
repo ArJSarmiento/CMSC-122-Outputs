@@ -1,27 +1,32 @@
-// for standard I/O
-#include <iostream>
-using namespace std;
-
-// for string class
-#include <string>
-
-// displays the program summary
-void summary()
-{
-    cout << "\nList MENU"
-         << "\n\t[1]Add Item"
-         << "\n\t[2]Delete Item"
-         << "\n\t[3]Display List"
-         << "\n\t[4]Delete List"
-         << "\n\t[5]Search Item"
-         << "\n\t[0]Exit Program"
-         << "\nEnter choice: "
-         << endl;
-}
+#include "Array.cpp"
+#include "Functions.h"
 
 int main()
 {
-    summary(); 
+    Array *array = new Array(10);
+    int choice, value;
+
+    for (choice = 6; choice != 0;) // loop until choice is 0
+    {
+        summary();
+
+        cin >> choice;
+        switch (choice)
+        {
+        case 1:
+            array = add_item(array);
+            break;
+        case 2:
+            break;
+        case 3:
+            display_list(array);
+            break;
+        case 4:
+            break;
+        case 0:
+            cout << "\nExiting program...";
+        }
+    }
 
     return 0;
 }
