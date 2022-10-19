@@ -244,7 +244,7 @@ Node *delete_item(Node *headptr)
     if (ptr->data == value) 
     {
         headptr = ptr->nextNode;
-        free(ptr);
+        delete ptr;
 
         return headptr;
     }
@@ -263,7 +263,7 @@ Node *delete_item(Node *headptr)
     }
 
     prev->nextNode = ptr->nextNode;
-    free (ptr);
+    delete ptr;
     return headptr;
 }
 

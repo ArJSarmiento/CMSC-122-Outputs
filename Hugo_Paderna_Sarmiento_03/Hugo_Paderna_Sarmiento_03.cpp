@@ -110,13 +110,13 @@ Stack *POP(Stack *stack)
 
     if (node->prevNode == NULL) // clears old stack if last node is cleared
     {
-        free(stack);
+        delete stack;
         Stack *newStack = new Stack(10); 
         return newStack;
     }
 
     stack->topNode = node->prevNode;
-    free(node);
+    delete node;
     
     return stack;
 }
