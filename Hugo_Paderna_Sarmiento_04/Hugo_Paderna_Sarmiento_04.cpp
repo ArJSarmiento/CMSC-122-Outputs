@@ -2,7 +2,7 @@
 
 // function prototype declaration
 Queue *INIT();
-Queue *EMPTY(Queue *queue);
+bool EMPTY(Queue *queue);
 Node *FRONT(Queue *queue);
 Queue *ENQUEUE(Node *node, Queue *queue);
 Queue *DEQUEUE(Queue *queue);
@@ -48,6 +48,13 @@ int main()
         }
             break; // this breaks from the switch(), not from the loop
         case 2:
+        {
+            if (EMPTY(queue))
+            {
+                break;
+            }
+            
+        }
             break;
         case 3:
         {
@@ -58,9 +65,15 @@ int main()
         }
             break;
         case 4:
+        {
+            if (EMPTY(queue))
+            {
+                break;
+            }
+        }
             break;
         case 0:
-            cout << "\nThe Washing Machine process has been terminated..."; 
+            cout << "\nThe Order System has been terminated..."; 
         }
     }
 
@@ -93,9 +106,15 @@ Node *FRONT(Queue *queue)
     return queue->frontNode;
 }
 
-Queue *EMPTY(Queue *queue)
+bool EMPTY(Queue *queue)
 {
-    return queue;
+    if (FRONT(queue) == NULL)
+    {
+        cout << "\nThe QUEUE is EMPTY. No order to serve.\n";
+        return true;
+    }
+
+    return false;
 }
 
 Queue *DEQUEUE(Queue *queue)
