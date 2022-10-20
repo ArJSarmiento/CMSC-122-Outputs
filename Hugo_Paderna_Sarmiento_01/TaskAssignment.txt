@@ -9,8 +9,4 @@ Specific position Arnel
 
 [3]Display List Arnel
 
-[4]Delete List Rafa
-
-[5]Search Item Francis
-
-search_assist function  Francis
+[4]Delete List Francis
