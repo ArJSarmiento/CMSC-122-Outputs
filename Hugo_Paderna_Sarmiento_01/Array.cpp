@@ -8,14 +8,14 @@ using namespace std;
 class Array
 {
     public:
-        int max;
-        int len;
-        string *items;
+        int max; // index of the maximum element
+        int end; // index of the last element
+        string *items; // pointer to the array of items
 
         Array(int max)
         {
             this->max = max;
             this->items =  new string[max];
-            this->len = -1;
+            this->end = -1;
         }
 };

@@ -9,7 +9,6 @@ int main()
     for (choice = 6; choice != 0;) // loop until choice is 0
     {
         summary();
-
         cin >> choice;
         switch (choice)
         {
