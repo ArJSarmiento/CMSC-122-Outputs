@@ -36,7 +36,7 @@ int main()
             cout << "\nPosition: ";
             cin >> position;
             
-            root = INSERT(root, position, 1);
+            root = INSERT(root, position);
         }
             break; // this breaks from the switch(), not from the loop
         case 2:

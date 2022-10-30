@@ -1,8 +1,8 @@
-Node *INSERT(Node *root, int data, int counter)
+Node *INSERT(Node *root, int data)
 {
     if (root == NULL)
     {
-        root = new Node(data, counter);
+        root = new Node(data);
     }
     else if (data == root->data)
     {
@@ -10,11 +10,11 @@ Node *INSERT(Node *root, int data, int counter)
     }
     else if (data < root->data)
     {
-        root->left = INSERT(root->left, data, counter);
+        root->left = INSERT(root->left, data);
     }
     else
     {
-        root->right = INSERT(root->right, data, counter);
+        root->right = INSERT(root->right, data);
     }
     return root;
 }
