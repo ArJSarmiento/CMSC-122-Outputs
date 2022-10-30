@@ -6,7 +6,7 @@ Node *INSERT(Node *root, int data, int counter)
     }
     else if (data == root->data)
     {
-        root->left = INSERT(root->left, data, counter++);
+        root->count++;
     }
     else if (data < root->data)
     {
