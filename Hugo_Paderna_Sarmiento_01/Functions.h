@@ -133,3 +133,28 @@ Array *add_item(Array *array)
 
     return array;
 }
+
+Array *delete_item(Array *array)
+{
+    return array;
+}
+
+Array *delete_list(Array *array)
+{
+    // guard clause for empty list
+    if (array->end < 0)
+    {
+        cout << "\nThe list is empty. You may not add an element at the end of the list.\n";
+        return array;
+    }
+
+    cout << "\nThe list has been emptied." << endl;
+    do{
+        for (int i = -1; i <= array->end; i++)
+        {
+                array->items[i] = array->items[i+1];
+        }
+    }while(array->end != -1);
+
+    return array;
+}

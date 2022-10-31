@@ -137,12 +137,12 @@ Stack *MAKENULL(Stack *stack)
         if (node->prevNode == NULL) // clears old stack if last node is cleared
         {
             cout << "\nAll kitchenware has been washed.\n";
-            free(stack);
+            delete stack;
             Stack *newStack = new Stack(10); 
             return newStack;
         }
         stack->topNode = node->prevNode;
-        free(node);
+        delete node;
     } while (stack->topNode != NULL);
 
     return stack;

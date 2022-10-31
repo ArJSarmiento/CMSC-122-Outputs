@@ -21,6 +21,7 @@ int main()
             display_list(array);
             break;
         case 4:
+            delete_list(array);
             break;
         case 0:
             cout << "\nExiting program...";

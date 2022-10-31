@@ -49,11 +49,13 @@ int main()
             break; // this breaks from the switch(), not from the loop
         case 2:
         {
+            Node *frontNode = FRONT(queue);
             if (EMPTY(queue))
             {
                 break;
             }
-            
+            cout << "\nNow serving " << frontNode->order << " to customer " << frontNode->name << ".\n";
+            DEQUEUE(queue);
         }
             break;
         case 3:
@@ -66,9 +68,20 @@ int main()
             break;
         case 4:
         {
+            Node *frontNode = FRONT(queue);
+
             if (EMPTY(queue))
             {
                 break;
+            }
+            do{
+                cout << "\nNow serving " << frontNode->order << " to customer " << frontNode->name << ".\n";
+                DEQUEUE(queue);
+            }while (frontNode != NULL);
+
+            if(frontNode == NULL)
+            {
+                cout << "\nAll orders have been served.\n";
             }
         }
             break;
@@ -119,5 +132,23 @@ bool EMPTY(Queue *queue)
 
 Queue *DEQUEUE(Queue *queue)
 {
+    Node *temp = queue->frontNode;
+
+    if(queue->frontNode == NULL)
+    {
+        return queue;
+    }
+
+    if(queue->frontNode == queue->rearNode)
+    {
+        queue->frontNode = queue->rearNode = NULL;
+    }
+
+    else
+    {
+        temp = temp->nextNode;
+    }
+    delete (temp);
+
     return queue;
 }
