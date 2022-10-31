@@ -143,10 +143,9 @@ Queue *DEQUEUE(Queue *queue)
     {
         queue->frontNode = queue->rearNode = NULL;
     }
-
     else
     {
-        temp = temp->nextNode;
+       queue->frontNode = temp->nextNode;
     }
     delete (temp);
 

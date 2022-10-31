@@ -47,9 +47,9 @@ Array *insert_helper(Array *array, string value, int position)
         array = resize(array);
     }
 
-    for (int i = position; i <= array->end; i++)
+    for (int i = array->end+1; i > position; i--)
     {
-        array->items[i+1] = array->items[i];
+        array->items[i] = array->items[i-1];
     }
 
     array->items[position] = value;
