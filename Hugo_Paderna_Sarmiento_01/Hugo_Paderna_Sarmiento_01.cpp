@@ -9,7 +9,8 @@ int main()
     for (choice = 6; choice != 0;) // loop until choice is 0
     {
         summary();
-        cin >> choice;
+        input_validation(choice);
+        
         switch (choice)
         {
         case 1:
@@ -25,6 +26,10 @@ int main()
             break;
         case 0:
             cout << "\nExiting program...";
+            break;
+        default:
+            cout << "\nInvalid input. Please try again.\n";
+            continue;
         }
     }
 

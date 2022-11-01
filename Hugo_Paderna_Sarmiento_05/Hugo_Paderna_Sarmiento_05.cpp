@@ -34,7 +34,7 @@ int main()
         case 1:
         {
             cout << "\nPosition: ";
-            cin >> position;
+            input_validation(position); 
             
             root = INSERT(root, position);
         }
@@ -57,6 +57,9 @@ int main()
         case 9: 
             cout << "\nProgram has been terminated.."; 
             break;
+        default:
+            cout << "\nInvalid input. Please try again.\n";
+            continue;
         }
     }
 

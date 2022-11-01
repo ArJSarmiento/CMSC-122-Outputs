@@ -1,5 +1,6 @@
 Assignment of Remaining Functionality
 
 Stack *POP(Stack *stack) - Rafa
+Input Validation for all cin Rafa
 
 Stack *MAKENULL(Stack *stack) - Hyugs

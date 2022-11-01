@@ -1,3 +1,23 @@
+void input_validation(int &input)
+{
+    while (!(cin >> input))
+    {
+        cout << "Invalid input. Please enter a number: ";
+        cin.clear();
+        cin.ignore(100, '\n');
+    }
+}
+
+void input_validation_string(string &str)
+{
+    while (!(cin >> str))
+    {
+        cout << "Invalid input. Please enter a string: ";
+        cin.clear();
+        cin.ignore(100, '\n');
+    }
+}
+
 void summary()
 {
     cout << "\nList MENU"
@@ -91,7 +111,7 @@ Array *insert_specific_position(Array *array, string value)
     do
     {
         cout << "\nWhich position do you want the element to be added to? ";
-        cin >> key;    
+        input_validation(key);
     } while (key > array->end+1 || key < 0);
 
     return insert_helper(array, value, key);
@@ -108,27 +128,34 @@ Array *add_item(Array *array)
     }
 
     cout << "\nPlease enter the item to be added: ";
-    cin >> value;
+    input_validation_string(value);
 
-    cout << "\nWhere to add the item?"
-         << "\n\t[1]Start of the list"
-         << "\n\t[2]End of the list"
-         << "\n\t[3]Specific position"
-         << "\n\t[0]Cancel"
-         << "\nEnter choice: ";
-
-    cin >> choice;
-
-    switch (choice)
+    
+    for (choice = 4; choice != 0;) // loop until choice is 0
     {
-    case 1:
-        return insert_start(array, value);
-    case 2:
-        return insert_end(array, value);
-    case 3:
-        return insert_specific_position(array, value);
-    case 0:
-        break;
+        cout << "\nWhere to add the item?"
+            << "\n\t[1]Start of the list"
+            << "\n\t[2]End of the list"
+            << "\n\t[3]Specific position"
+            << "\n\t[0]Cancel"
+            << "\nEnter choice: ";
+
+        input_validation(choice);
+
+        switch (choice)
+        {
+        case 1:
+            return insert_start(array, value);
+        case 2:
+            return insert_end(array, value);
+        case 3:
+            return insert_specific_position(array, value);
+        case 0:
+            break;
+        default:
+            cout << "\nInvalid input. Please try again.\n";
+            break;
+        }
     }
 
     return array;
