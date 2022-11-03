@@ -76,13 +76,10 @@ int main()
             }
             do{
                 cout << "\nNow serving " << frontNode->order << " to customer " << frontNode->name << ".\n";
-                DEQUEUE(queue);
+                frontNode = frontNode->nextNode;
+                queue = DEQUEUE(queue);
             }while (frontNode != NULL);
-
-            if(frontNode == NULL)
-            {
-                cout << "\nAll orders have been served.\n";
-            }
+            cout << "\nAll orders have been served.\n";
         }
             break;
         case 0:

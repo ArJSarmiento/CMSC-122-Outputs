@@ -177,7 +177,7 @@ Array *delete_list(Array *array)
 
     cout << "\nThe list has been emptied." << endl;
     do{
-        for (int i = -1; i <= array->end; i++)
+        for (int i = 0; i <= array->end; i++)
         {
                 array->items[i] = array->items[i+1];
         }
