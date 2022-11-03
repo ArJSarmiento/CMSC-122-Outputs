@@ -13,7 +13,7 @@ void summary()
          <<"\n\t[6] Find successor"
          <<"\n\t[7] Find predecessor"
          <<"\n\t[8] Display tree"
-         <<"\n\t[9] Exit"
+         <<"\n\t[0] Exit"
          << "\nEnter choice: ";
 }
 
@@ -23,7 +23,7 @@ int main()
 
     int choice, position;
 
-    for (choice = 10; choice != 9;)
+    for (choice = 10; choice != 0;)
     {
         summary();
 
@@ -54,7 +54,7 @@ int main()
         case 8: 
             DISPLAY(root);
             break;
-        case 9: 
+        case 0: 
             cout << "\nProgram has been terminated.."; 
             break;
         default:
