@@ -74,8 +74,8 @@ int main()
             {
                 break;
             }
-            do{
-                cout << "\nNow serving " << frontNode->order << " to customer " << frontNode->name << ".\n";
+            do{ //loops to delete every order and name within the queue
+                cout << "\nNow serving " << frontNode->order << " to customer " << frontNode->name << ".\n"; //prints every order and name from the queue
                 frontNode = frontNode->nextNode;
                 queue = DEQUEUE(queue);
             }while (frontNode != NULL);

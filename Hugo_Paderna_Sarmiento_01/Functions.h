@@ -175,13 +175,8 @@ Array *delete_list(Array *array)
         return array;
     }
 
+    array->end = -1;  //sets the list to be empty
     cout << "\nThe list has been emptied." << endl;
-    do{
-        for (int i = 0; i <= array->end; i++)
-        {
-                array->items[i] = array->items[i+1];
-        }
-    }while(array->end != -1);
-
+    array->items = new string[10]; //clears the previous list by initializing a new array
     return array;
 }
