@@ -162,7 +162,6 @@ Array *add_item(Array *array)
 
 Array *delete_item(Array *array)
 {
-<<<<<<< HEAD
     string value;
 
     cout << "\nPlease enter the item to be deleted: ";
@@ -201,7 +200,6 @@ Array *delete_item(Array *array)
 
         return array;
 
-=======
     return array;
 }
 
@@ -218,5 +216,4 @@ Array *delete_list(Array *array)
     cout << "\nThe list has been emptied." << endl;
     array->items = new string[10]; //clears the previous list by initializing a new array
     return array;
->>>>>>> 27191f279bc955bda84e3b4ecba77aaba18ad8c7
 }

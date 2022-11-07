@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 Node *INSERT(Node *root, int data, int counter);
 Node *DELETE(Node *root, int data);
 Node *MAX(Node *root);
@@ -8,8 +7,7 @@ void INORDER(Node *root);
 void POSTORDER(Node *root);
 void DISPLAY(Node *root);
 
-Node *INSERT(Node *root, int data, int counter)
-=======
+Node *INSERT(Node *root, int data, int counter);
 void input_validation(int &input)
 {
     while (!(cin >> input))
@@ -31,7 +29,6 @@ void input_validation_string(string &str)
 }
 
 Node *INSERT(Node *root, int data)
->>>>>>> 27191f279bc955bda84e3b4ecba77aaba18ad8c7
 {
     if (root == NULL)
     {
