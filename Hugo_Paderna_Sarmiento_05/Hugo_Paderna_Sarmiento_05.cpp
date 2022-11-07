@@ -67,10 +67,35 @@ int main()
         }
             break;
         case 5:
+        {
+            Node *temp = MIN(root);
+            if (temp != NULL)
+                cout << "\nMininum Item: " <<  temp->data << "\n"; //outputs Minimum value of the BST
+        }
             break;
-        case 6:
+        case 6: 
+        {
+            cout << "\nInput a number: ";
+            cin >> data;
+
+            Node *temp = SUCCESSOR(root, data);
+            if(temp == NULL)
+                cout << "\nNo Successor Found\n";
+            else
+                cout << "The Successor of '" << data << "' is " << temp->data << endl;
+        }
             break;
         case 7:
+        {
+            cout << "\nInput a number: ";
+            cin >> data;
+
+            Node *temp = PREDECESSOR(root, data);
+            if(temp == NULL)
+                cout << "\nNo Predecessor Found\n";
+            else
+                cout << "\nThe Predecessor of '" << data << "' is " << temp->data << endl;
+        }
             break;
         case 8: 
             DISPLAY(root);

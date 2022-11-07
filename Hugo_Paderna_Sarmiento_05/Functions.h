@@ -6,6 +6,9 @@ void PREORDER(Node *root);
 void INORDER(Node *root);
 void POSTORDER(Node *root);
 void DISPLAY(Node *root);
+Node *FINDMINIMUM(Node *root);
+Node *SUCCESSOR(Node *root, int data);
+Node *PREDECESSOR(Node *root, int data);
 
 void input_validation(int &input)
 {
@@ -148,4 +151,70 @@ void DISPLAY(Node *root)
     cout << "\nPost-order: \n";
     POSTORDER(root);
     cout << endl;
+}
+
+Node *MIN(Node *root)
+{
+    if (root == NULL) return root;
+    else if (root->left == NULL)
+        return root;
+    return MIN(root->left);
+}
+
+Node *SUCCESSOR(Node *root, int data)
+{
+    //Search the tree if the item exists
+    Node *current = SEARCH(root, data);
+    if(current == NULL) return NULL;
+
+    //Case when Node has right subtree
+    if(current->right != NULL)
+        return MIN(current->right);
+
+    //Case when Node has no right subtree
+    else
+    {
+        Node *successor = NULL;
+        Node *ancestor = root;
+        while(ancestor != current)
+        {
+            if(current->data < ancestor->data)
+            {
+                successor = ancestor;
+                ancestor = ancestor->left;
+            }
+            else
+                ancestor = ancestor->right;
+        }
+        return successor;
+    }
+}
+
+Node *PREDECESSOR(Node *root, int data)
+{
+    //Search the tree if the item exists
+    Node *current = SEARCH(root, data);
+    if(current == NULL) return NULL;
+
+    //Case when Node has left subtree
+    if(current->left != NULL)
+        return MAX(current->left);
+
+    //Case when Node has no left subtree
+    else
+    {
+        Node *predecessor = NULL;
+        Node *ancestor = root;
+        while(ancestor != current)
+        {
+            if(current->data > ancestor->data)
+            {
+                predecessor = ancestor;
+                ancestor = ancestor->right;
+            }
+            else
+                ancestor = ancestor->left;
+        }
+        return predecessor;
+    }
 }

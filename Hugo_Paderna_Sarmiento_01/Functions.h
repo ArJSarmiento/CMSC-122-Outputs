@@ -199,6 +199,7 @@ Array *delete_item(Array *array)
         }
 
         return array;
+    }
 
     return array;
 }
@@ -208,12 +209,13 @@ Array *delete_list(Array *array)
     // guard clause for empty list
     if (array->end < 0)
     {
-        cout << "\nThe list is empty. You may not add an element at the end of the list.\n";
+        cout << "\nThe list is empty.\n";
         return array;
     }
 
     array->end = -1;  //sets the list to be empty
     cout << "\nThe list has been emptied." << endl;
-    array->items = new string[10]; //clears the previous list by initializing a new array
-    return array;
+    delete array;
+    Array *newarray = new Array(10); //clears the previous list by initializing a new array
+    return newarray;
 }
