@@ -33,7 +33,7 @@ int main()
         {
         case 1:
         {
-            cout << "\nPosition: ";
+            cout << "\nEnter a number: ";
             input_validation(position); 
             
             root = INSERT(root, position);
