@@ -7,7 +7,6 @@ void INORDER(Node *root);
 void POSTORDER(Node *root);
 void DISPLAY(Node *root);
 
-Node *INSERT(Node *root, int data, int counter);
 void input_validation(int &input)
 {
     while (!(cin >> input))
