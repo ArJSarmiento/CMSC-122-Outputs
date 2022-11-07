@@ -123,26 +123,26 @@ Stack *POP(Stack *stack)
 
 Stack *MAKENULL(Stack *stack)
 {
-    if (EMPTY(stack))
+    if (EMPTY(stack)) //guard clause if the stack is empty
     {
         cout << "\nThe STACK is EMPTY. No kitchenware to wash.\n";
         return stack;
     }
 
     Node *node = new Node(); // temporary node
-    do{
+    do{ //loops to delete every item within the stack
         cout << "\n" << stack->topNode->data << " is being washed.\n";
         node = stack->topNode;
 
         if (node->prevNode == NULL) // clears old stack if last node is cleared
         {
             cout << "\nAll kitchenware has been washed.\n";
-            free(stack);
+            delete stack;
             Stack *newStack = new Stack(10); 
             return newStack;
         }
         stack->topNode = node->prevNode;
-        free(node);
+        delete node;
     } while (stack->topNode != NULL);
 
     return stack;

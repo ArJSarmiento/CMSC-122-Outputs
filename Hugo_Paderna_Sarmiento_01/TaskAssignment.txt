@@ -4,6 +4,7 @@ Assignment of Remaining Functionality
 Start of the list Arnel
 End of the list Arnel
 Specific position Arnel
+Input Validation for all cin Arnel
 
 [2]Delete Item Rafa
 

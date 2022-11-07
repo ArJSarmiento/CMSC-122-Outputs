@@ -3,3 +3,4 @@ Assignment of Remaining Functionality
 Queue *EMPTY(Queue *queue) - Rafa
 
 Queue *DEQUEUE(Queue *queue) - Hyugs
+Input Validation for all cin Hyugs
