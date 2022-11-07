@@ -16,6 +16,7 @@ int main()
             array = add_item(array);
             break;
         case 2:
+            array = delete_item(array);
             break;
         case 3:
             display_list(array);

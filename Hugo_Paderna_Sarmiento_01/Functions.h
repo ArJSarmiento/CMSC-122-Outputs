@@ -21,7 +21,7 @@ void display_list(Array *array)
     cout << "\nList: \n";
     for (int i = 0; i <= array->end; i++)
     {
-        cout << i << ".) " << array->items[i] << endl;
+        cout << i+1 << ".) " << array->items[i] << endl;
     }
 }
 
@@ -54,7 +54,6 @@ Array *insert_helper(Array *array, string value, int position)
 
     array->items[position] = value;
     array->end += 1;
-    display_list(array);
     return array;
 }
 
@@ -132,4 +131,46 @@ Array *add_item(Array *array)
     }
 
     return array;
+}
+
+Array *delete_item(Array *array)
+{
+    string value;
+
+    cout << "\nPlease enter the item to be deleted: ";
+    cin >> value;
+
+    int i, j, position;
+    for (i = 0; i <= array->end; i++)
+    {
+        if (array->items[i] == value)
+        {
+            {
+                for (j = i; j < array->end; j++);
+                {
+                    array->items[j] = array->items[j+1];
+                }
+            }
+            position = i;
+            break;
+        }
+    }
+
+    if (position == 0)
+    {
+        cout << ("\nThe list contains no such element.");
+        return array;
+    }
+
+    else
+    {
+        cout << "\nThe element " << value << ", which is at position " << position << ", has been deleted.";
+
+        for (i = position; i < array->end-1; i++)
+        {
+            array->items[i] = array->items[i+1];
+        }
+
+        return array;
+
 }

@@ -1,3 +1,12 @@
+Node *INSERT(Node *root, int data, int counter);
+Node *DELETE(Node *root, int data);
+Node *MAX(Node *root);
+Node *SEARCH(Node *root, int data);
+void PREORDER(Node *root);
+void INORDER(Node *root);
+void POSTORDER(Node *root);
+void DISPLAY(Node *root);
+
 Node *INSERT(Node *root, int data, int counter)
 {
     if (root == NULL)
@@ -19,6 +28,72 @@ Node *INSERT(Node *root, int data, int counter)
     return root;
 }
 
+Node *DELETE(Node *root, int data)
+{
+    // Search root node to be deleted
+    if (root == NULL) 
+        return root;
+
+    else if (data < root->data) 
+        root->left = DELETE(root->left, data);
+
+    else if (data > root->data) 
+        root->right = DELETE(root->right, data);
+
+    // Leaf node case
+    if (root->left == NULL && root->right == NULL)
+    {
+        delete root;
+        root = NULL;
+    }
+
+    // Case of one child
+    else if (root->left == NULL) // left side is empty
+    {
+        struct Node *temp = root;
+        root = root->right;
+        delete temp;
+    }
+    else if (root->right == NULL) // right side is empty
+    {
+        struct Node *temp = root;
+        root = root->left;
+        delete temp;
+    }
+    
+    // Case of two children
+    else 
+    {
+        struct Node *temp = MAX(root->left);
+        root->data = temp->data;
+        root->left = DELETE(root->left, temp->data);
+    }
+
+    return root;
+}
+
+Node *MAX(Node *root)
+{
+    if (root == NULL)
+        return root;
+        
+    else if (root->right == NULL)
+        return root;
+
+    return MAX(root->right);
+}
+
+Node *SEARCH(Node *root, int data)
+{
+    if (root == NULL || root->data == data)
+        return root;
+
+    if (data > root->data)
+        return SEARCH(root->right, data);
+    
+    return SEARCH(root->left, data);
+}
+
 void PREORDER(Node *root)
 {
     if (root == NULL) return;
@@ -35,7 +110,8 @@ void INORDER(Node *root)
     INORDER(root->right);
 }
 
-void POSTORDER(Node *root){
+void POSTORDER(Node *root)
+{
     if (root == NULL) return;
     POSTORDER(root->left);
     POSTORDER(root->right);

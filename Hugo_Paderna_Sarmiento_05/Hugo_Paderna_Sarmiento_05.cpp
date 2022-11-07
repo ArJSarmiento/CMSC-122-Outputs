@@ -21,7 +21,7 @@ int main()
 {
     Node *root = NULL;
 
-    int choice, position;
+    int choice, position, data;
 
     for (choice = 10; choice != 9;)
     {
@@ -40,10 +40,31 @@ int main()
         }
             break; // this breaks from the switch(), not from the loop
         case 2:
+        {
+            cout << "\nInput number to be deleted: ";
+            cin >> data;
+
+            root = DELETE(root, data);
+        }
             break;
         case 3:
+        {
+            cout << "\nInput number to be searched: ";
+            cin >> data;
+            
+            Node *temp = SEARCH(root, data);
+            if (temp != NULL)
+                cout << "\nThe item, " << temp->data << " exists with count " << temp->count << ".";
+            else 
+                cout << "\nThe item does not exist.";
+        }
             break;
         case 4:
+        {
+            Node *temp = MAX(root);
+            if (temp != NULL)
+                cout << "\nMaximum item: " << temp->data << "\n";
+        }
             break;
         case 5:
             break;
