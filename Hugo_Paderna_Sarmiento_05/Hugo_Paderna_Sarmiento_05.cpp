@@ -54,9 +54,9 @@ int main()
             
             Node *temp = SEARCH(root, data);
             if (temp != NULL)
-                cout << "\nThe item, " << temp->data << " exists with count " << temp->count << ".";
+                cout << "\nThe item, " << temp->data << " exists with count " << temp->count << "." << endl;
             else 
-                cout << "\nThe item does not exist.";
+                cout << "\nThe item does not exist." << endl;
         }
             break;
         case 4:

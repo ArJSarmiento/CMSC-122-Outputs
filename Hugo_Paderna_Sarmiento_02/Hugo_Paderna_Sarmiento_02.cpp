@@ -62,11 +62,6 @@ Node *add_item(Node *headptr)
 {
     int choice, value;
 
-    if (headptr == NULL) // if the list is empty, inform the user
-    {
-        cout << "\nThe list is empty. You may not add an element at the end of the list.\n";
-    }
-
     cout << "\nPlease enter the item to be added: ";
     cin >> value;
 

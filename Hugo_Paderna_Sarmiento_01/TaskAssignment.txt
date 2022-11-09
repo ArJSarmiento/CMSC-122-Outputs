@@ -11,3 +11,7 @@ Input Validation for all cin Arnel
 [3]Display List Arnel
 
 [4]Delete List Francis
+
+Bugs
+Delete Function -  Rafa
+Comments - Francis

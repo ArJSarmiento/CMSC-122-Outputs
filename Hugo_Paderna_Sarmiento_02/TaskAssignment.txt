@@ -14,3 +14,8 @@ Specific position Arnel
 [5]Search Item Francis
 
 Input Validation for all cin Francis
+
+Bugs
+Add item when specific position exceeds length - Arnel
+Add item specific position at the start of the list Arnel
+Comments - Arnel

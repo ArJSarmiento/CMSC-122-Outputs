@@ -41,7 +41,7 @@ void display_list(Array *array)
     cout << "\nList: \n";
     for (int i = 0; i <= array->end; i++)
     {
-        cout << i+1 << ".) " << array->items[i] << endl;
+        cout << i << ".) " << array->items[i] << endl;
     }
 }
 
@@ -120,11 +120,6 @@ Array *add_item(Array *array)
 {
     int choice;
     string value;
-
-    if (array->end < 0) // if the list is empty, inform the user
-    {
-        cout << "\nThe list is empty. You may not add an element at the end of the list.\n";
-    }
 
     cout << "\nPlease enter the item to be added: ";
     input_validation_string(value);
@@ -213,7 +208,6 @@ Array *delete_list(Array *array)
         return array;
     }
 
-    array->end = -1;  //sets the list to be empty
     cout << "\nThe list has been emptied." << endl;
     delete array;
     Array *newarray = new Array(10); //clears the previous list by initializing a new array
