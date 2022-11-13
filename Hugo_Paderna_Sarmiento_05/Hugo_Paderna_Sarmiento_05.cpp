@@ -52,8 +52,7 @@ int main()
     for (choice = 10; choice != 0;)
     {
         summary();
-
-        cin >> choice;
+        input_validation(choice);
 
         switch (choice) // use switch flow control structure
         {
@@ -68,7 +67,7 @@ int main()
         case 2:
         {
             cout << "\nInput number to be deleted: ";
-            cin >> data;
+            input_validation(data);
 
             root = DELETE(root, data);
         }
@@ -76,7 +75,7 @@ int main()
         case 3:
         {
             cout << "\nInput number to be searched: ";
-            cin >> data;
+            input_validation(data);
             
             Node *temp = SEARCH(root, data);
             if (temp != NULL)
@@ -102,7 +101,7 @@ int main()
         case 6: 
         {
             cout << "\nInput a number: ";
-            cin >> data;
+            input_validation(data);
 
             Node *temp = SUCCESSOR(root, data);
             if(temp == NULL)
@@ -114,7 +113,7 @@ int main()
         case 7:
         {
             cout << "\nInput a number: ";
-            cin >> data;
+            input_validation(data);
 
             Node *temp = PREDECESSOR(root, data);
             if(temp == NULL)
@@ -131,7 +130,7 @@ int main()
             break;
         default:
             cout << "\nInvalid input. Please try again.\n";
-            continue;
+            break;
         }
     }
 

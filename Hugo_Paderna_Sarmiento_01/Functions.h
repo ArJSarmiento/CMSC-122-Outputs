@@ -213,7 +213,7 @@ Array *delete_item(Array *array)
     string value;
 
     cout << "\nPlease enter the item to be deleted: ";
-    cin >> value;
+    input_validation_string(value);
 
     int i, j, position;
     for (i = 0; i <= array->end; i++)
