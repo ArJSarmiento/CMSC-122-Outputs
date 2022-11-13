@@ -1,8 +1,14 @@
-// Type Node definition
+/*
+    import libraries for the program
+*/
 #include <iostream>
 #include <string>
 using namespace std;
 
+
+/*
+    Class definition for Node
+*/
 class Node
 {
 public:
@@ -10,6 +16,9 @@ public:
     Node *prevNode;
 };
 
+/*
+    Class definition for Stack
+*/
 class Stack
 {
 public:
@@ -17,6 +26,7 @@ public:
     Node *topNode;
     int top;
 
+    // Stack constructor
     Stack(int max)
     {
         this->max = max;

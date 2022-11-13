@@ -1,3 +1,4 @@
+// Type Node definition
 #include "Stack.cpp"
 
 // function prototype declaration
@@ -6,7 +7,11 @@ Stack *POP(Stack *stack);
 Stack *MAKENULL(Stack *stack);
 void TOP(Stack *stack);
 
-// displays the program summary
+/*
+    This function displays the summary of the program with corresponding inputs
+    Input: none
+    Output: none
+*/
 void summary()
 {
     cout <<"\n---------- Kitchenware Washing Machine ----------"
@@ -19,6 +24,7 @@ void summary()
     cout << "\n\nEnter choice: ";
 }
 
+// Function if the main runtime of the program
 int main()
 {
     Stack *stack = new Stack(10); 
@@ -26,6 +32,7 @@ int main()
     int choice, value;
     string kitchenware;
 
+    // loops until choice is 0
     for (choice = 6; choice != 0;)
     {
         summary();
@@ -50,22 +57,40 @@ int main()
             break;
         case 0:
             cout << "\nThe Washing Machine process has been terminated...\n"; // colorPrint adds color to the text; 12 corresponds to red
+        default:
+            cout << "\nInvalid input. Please try again.\n";
+            break;
         }
     }
 
     return 0;
 }
 
+/*
+    This function returns whether the stack is full or not
+    Input: stack pointer
+    Output: true if stack is full, false if stack is not full
+*/
 bool FULL(Stack *stack)
 {
     return stack->top >= stack->max;
 }
 
+/*
+    This function returns true if the stack is empty else returns false
+    Input: stack pointer
+    Output: true or false
+*/
 bool EMPTY(Stack *stack)
 {
     return stack->top == -1;
 }
 
+/*
+    This function adds an item to the stack
+    Input: value to be added to the stack, pointer to the stack
+    Output: pointer of stack with added value
+*/
 Stack *PUSH(string kw, Stack *stack)
 {
     if (FULL(stack))
@@ -84,6 +109,11 @@ Stack *PUSH(string kw, Stack *stack)
     return stack;
 }
 
+/*
+    This function displays the top item in the stack
+    Input: pointer to the stack
+    Output: none
+*/
 void TOP(Stack *stack)
 {
     if (EMPTY(stack))

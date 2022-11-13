@@ -1,7 +1,21 @@
-// for standard I/O
+/*
+    Proponents:
+        Arnel Jan Sarmiento
+        Francis Lloyd Hugo
+        Rafael Paderna
+    
+    This program creates a linked list of strings. 
+    The user can add, delete items, delete the list and display the list.
+    
+    This source code the main runtime of the program as well as function definitions.
+*/
+
+// standard I/O namespace
 #include <iostream>
 using namespace std;
+// string type import
 #include <string>
+// import Node class
 #include "Node.cpp"
 
 // function prototype declaration
@@ -15,6 +29,11 @@ Node *delete_list(Node *headptr);
 void display_list(Node *head);
 int list_length(Node headptr);
 
+/*
+    This function is the main runtime of the program
+    Input: none
+    Output: 0
+*/
 int main()
 {
     Node *head = NULL; // indicates an empty list
@@ -26,6 +45,7 @@ int main()
         summary();
 
         cin >> choice;
+        // switch statement to perform opertations corresponding to summary
         switch (choice)
         {
         case 1:
@@ -40,12 +60,20 @@ int main()
         case 4:
             head = delete_list(head);
             cout << "\nExiting program";
+        default:
+            cout << "\nInvalid input. Please try again.\n";
+            break;
         }
     }
 
     return 0;
 }
 
+/*
+    This function displays the summary of the program.
+    Input: none
+    Output: none
+*/
 void summary()
 {
     cout << "\nList MENU"
@@ -58,6 +86,12 @@ void summary()
          << endl;
 }
 
+/*
+    This function displays all the options in adding an item to the list.
+    Exectues the function that the user chooses.
+    Input: pointer of head node
+    Output: pointer of head node of new list
+*/
 Node *add_item(Node *headptr)
 {
     int choice, value;
@@ -89,6 +123,11 @@ Node *add_item(Node *headptr)
     return headptr;
 }
 
+/*
+    This function adds an item to the start of the list.
+    Input: pointer of head node, value of item to be added
+    Output: pointer of head node of new list
+*/
 Node *insert_start(Node *headptr, int value)
 {
     Node *ptr = new Node(); // allocates memory for new node instance
@@ -100,6 +139,11 @@ Node *insert_start(Node *headptr, int value)
     return headptr;
 }
 
+/*
+    This function adds an item to the end of the list.
+    Input: pointer of head node, value of item to be added
+    Output: pointer of head node of new list
+*/
 Node *insert_end(Node *headptr, int value)
 {
     // guard clause for empty list
@@ -128,7 +172,11 @@ Node *insert_end(Node *headptr, int value)
     return headptr;
 }
 
-// this function adds an element at a specific position in the list
+/*
+    This function adds an item to a specific position of the list.
+    Input: pointer of head node, value of item to be added
+    Output: pointer of head node of new list
+*/
 Node *insert_specific_position(Node *headptr, int value)
 {
     // guard clause for empty list
@@ -178,7 +226,11 @@ Node *insert_specific_position(Node *headptr, int value)
     return headptr;
 }
 
-// this function returns the length of the list
+/*
+    Loops through the list and returns the length of the list
+    Input: head node
+    Output: length of list
+*/
 int list_length(Node headptr)
 {
     Node *ptr;
@@ -195,6 +247,11 @@ int list_length(Node headptr)
     return len;
 }
 
+/*
+    This function displays all the items in the list. 
+    Input: pointer of head node
+    Output: none
+*/
 void display_list(Node *head)
 {
     // guard clause for empty list

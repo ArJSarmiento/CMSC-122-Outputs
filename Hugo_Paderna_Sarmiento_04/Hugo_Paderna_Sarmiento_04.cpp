@@ -1,3 +1,4 @@
+// import dependencies
 #include "Queue.cpp"
 
 // function prototype declaration
@@ -7,7 +8,11 @@ Node *FRONT(Queue *queue);
 Queue *ENQUEUE(Node *node, Queue *queue);
 Queue *DEQUEUE(Queue *queue);
 
-// displays the program summary
+/*
+    This function displays the program summary with corresponding input
+    Input: none
+    Output: none
+*/
 void summary()
 {
     cout <<"\nArthur's Fried Chicken Menu:"
@@ -20,6 +25,11 @@ void summary()
         << endl;
 }
 
+/*
+    This function is the main runtime of the program
+    Input: none
+    Output: 0
+*/
 int main()
 {
     Queue *queue = INIT(); 
@@ -84,17 +94,30 @@ int main()
             break;
         case 0:
             cout << "\nThe Order System has been terminated..."; 
+        default:
+            cout << "\nInvalid input. Please try again.\n";
+            break;
         }
     }
 
     return 0;
 }
 
+/*
+    This function initializes the queue
+    Input: none
+    Output: pointer to new queue
+*/
 Queue *INIT()
 {
     return new Queue();
 }
 
+/*
+    This function adds a new item to the queue
+    Input: pointer to node, pointer to queue
+    Output: pointer to queue
+*/
 Queue *ENQUEUE(Node *node, Queue *queue)
 {
     if (queue->frontNode == NULL)
@@ -111,6 +134,11 @@ Queue *ENQUEUE(Node *node, Queue *queue)
     return queue;
 }
 
+/*
+    This function returns the frontNode of the queue
+    Input: pointer to queue
+    Output: pointer to frontNode
+*/
 Node *FRONT(Queue *queue)
 {
     return queue->frontNode;

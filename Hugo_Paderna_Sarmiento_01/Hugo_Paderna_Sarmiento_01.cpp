@@ -1,6 +1,14 @@
+/*
+    Import dependencies
+*/
 #include "Array.cpp"
 #include "Functions.h"
 
+/*
+    This function is the main runtime of the program
+    Input: none
+    Output: 0
+*/
 int main()
 {
     Array *array = new Array(10);

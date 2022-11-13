@@ -1,3 +1,8 @@
+/*
+    This Script declares all the necessary functions
+*/
+
+// Define function prototypes
 Node *INSERT(Node *root, int data, int counter);
 Node *DELETE(Node *root, int data);
 Node *MAX(Node *root);
@@ -10,6 +15,11 @@ Node *FINDMINIMUM(Node *root);
 Node *SUCCESSOR(Node *root, int data);
 Node *PREDECESSOR(Node *root, int data);
 
+/*
+    This function validates integer inputs. Loops until a valid input is entered.
+    Input: pointer of input integer
+    Output: none
+*/
 void input_validation(int &input)
 {
     while (!(cin >> input))
@@ -20,12 +30,22 @@ void input_validation(int &input)
     }
 }
 
+/*
+    This function validates string inputs. Gets the entire line of input. 
+    Input: pointer of input string
+    Output: none
+*/
 void input_validation_string(string &str)
 {
     cin.ignore();
     getline(cin, str);
 }
 
+/*
+    This function inserts a node to the BST
+    Input: pointer of root node, data to be inserted
+    Output: pointer of new root node
+*/
 Node *INSERT(Node *root, int data)
 {
     if (root == NULL)
@@ -113,6 +133,11 @@ Node *SEARCH(Node *root, int data)
     return SEARCH(root->left, data);
 }
 
+/*
+    This function prints the preorder traversal of the tree
+    Input: pointer of root node
+    Output: none
+*/
 void PREORDER(Node *root)
 {
     if (root == NULL) return;
@@ -121,6 +146,11 @@ void PREORDER(Node *root)
     PREORDER(root->right);
 }
 
+/*
+    This function prints the inorder traversal of the tree
+    Input: pointer of root node
+    Output: none
+*/
 void INORDER(Node *root)
 {
     if (root == NULL) return;
@@ -129,6 +159,11 @@ void INORDER(Node *root)
     INORDER(root->right);
 }
 
+/*
+    This function prints the postorder traversal of the tree
+    Input: pointer of root node
+    Output: none
+*/
 void POSTORDER(Node *root)
 {
     if (root == NULL) return;
@@ -137,6 +172,11 @@ void POSTORDER(Node *root)
     cout << root->data << ". ";
 }
 
+/*
+    This function prints the tree in Preorder, Inorder, and Postorder 
+    Input: pointer of root node
+    Output: none
+*/
 void DISPLAY(Node *root)
 {
     if (root == NULL) return;

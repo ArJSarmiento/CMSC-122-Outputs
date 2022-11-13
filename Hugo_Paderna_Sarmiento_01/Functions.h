@@ -1,3 +1,8 @@
+/*
+    This function validates integer inputs. Loops until a valid input is entered.
+    Input: pointer of input integer
+    Output: none
+*/
 void input_validation(int &input)
 {
     while (!(cin >> input))
@@ -8,12 +13,23 @@ void input_validation(int &input)
     }
 }
 
+/*
+    This function validates string inputs. Gets the entire line of input. 
+    Input: pointer of input string
+    Output: none
+*/
 void input_validation_string(string &str)
 {
     cin.ignore();
     getline(cin, str);
 }
 
+
+/*
+    This function prints the intruction set of the program.
+    input: none
+    output: none
+*/
 void summary()
 {
     cout << "\nList MENU"
@@ -26,6 +42,11 @@ void summary()
          << endl;
 }
 
+/*
+    This loops through and prints all the items in the list array. Prints empty statement if list is empty.
+    Input: pointer of array
+    Output: none
+*/
 void display_list(Array *array)
 {
     if (array->end < 0)
@@ -41,7 +62,13 @@ void display_list(Array *array)
     }
 }
 
-//resize array
+/*
+    This function creates a new array with twice the size of the previous array. 
+    Copies all the items from the previous array to the new array. 
+    Deletes the previous array. 
+    Input: pointer of array
+    Output: pointer of resized array
+*/  
 Array *resize(Array *array)
 {
     string *temp = new string[array->max * 2];
@@ -55,6 +82,13 @@ Array *resize(Array *array)
     return array;
 }
 
+/*
+    This function adds an item to the list array. 
+    Shifts all the items to the right if the list is not empty.
+    If the array is full, it calls the resize function to create a new array with twice the size of the previous array. 
+    Input: pointer of array, string of item to be added, integer of index of item to be added
+    Output: pointer of array
+*/
 Array *insert_helper(Array *array, string value, int position)
 {
     // check if array is full then resize
@@ -73,11 +107,23 @@ Array *insert_helper(Array *array, string value, int position)
     return array;
 }
 
+/*
+    This function adds an item to the start of the list array. 
+    Calls the insert_helper function to add the item to start the array.
+    Input: pointer of array
+    Output: pointer of array
+*/
 Array *insert_start(Array *array, string value)
 {
     return insert_helper(array, value, 0);
 }
 
+/*
+    This function adds an item to the end of the list array. 
+    Calls the insert_helper function to add the item to the end of the array.
+    Input: pointer of array
+    Output: pointer of array
+*/
 Array *insert_end(Array *array, string value)
 {
     // guard clause for empty list
@@ -90,7 +136,12 @@ Array *insert_end(Array *array, string value)
     return insert_helper(array, value, array->end+1);
 }
 
-// this function adds an element at a specific position in the list
+/*
+    This function adds an item to a specific position in the list array. 
+    Calls the insert_helper function to add the item to the array.
+    Input: pointer of array
+    Output: pointer of array
+*/
 Array *insert_specific_position(Array *array, string value)
 {
     // guard clause for empty list
@@ -111,7 +162,13 @@ Array *insert_specific_position(Array *array, string value)
 
     return insert_helper(array, value, key);
 }
- 
+
+/*
+    This function displays the options of inserting an item into the list array.
+    And calls the appropriate function to add the item to the array.
+    Input: pointer of array
+    Output: pointer of array
+*/
 Array *add_item(Array *array)
 {
     int choice;

@@ -1,7 +1,27 @@
+/*
+    Proponents:
+        Arnel Jan Sarmiento
+        Francis Lloyd Hugo
+        Rafael Paderna
+    
+    This program creates a Binary Search Tree.
+    The user can add, delete items, delete the tree, 
+    find the maximum and minimum values, 
+    find the predecessor and successor nodes,
+    and the display the tree.
+
+    This source code the main runtime of the program as well as function definitions.
+*/
+
+//Imports all the dependencies
 #include "Node.cpp"
 #include "Functions.h"
 
-// displays the program summary
+/*
+    This function displays the program summary with corresponding input
+    Input: none
+    Output: none
+*/
 void summary()
 {
     cout << "\nList MENU" 
@@ -17,12 +37,18 @@ void summary()
          << "\nEnter choice: ";
 }
 
+/*
+    This function is the main runtime of the program
+    Input: none
+    Output: 0
+*/
 int main()
 {
     Node *root = NULL;
 
     int choice, position, data;
 
+    // Loops until the user enters 0
     for (choice = 10; choice != 0;)
     {
         summary();

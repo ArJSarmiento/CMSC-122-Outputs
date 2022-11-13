@@ -1,7 +1,12 @@
-// Type Node definition
+/*
+    This script imports all the standard libraries and the necessary classes
+*/
 #include <iostream>
 using namespace std;
 
+/*
+    Class definition for Node
+*/
 class Node
 {
 public:
@@ -10,6 +15,9 @@ public:
     Node *left;
     Node *right;
     
+    /*
+        Constructors for Node
+    */
     Node()
     {
         this->data = 0;

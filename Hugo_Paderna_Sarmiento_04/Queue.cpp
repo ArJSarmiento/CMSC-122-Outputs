@@ -1,8 +1,13 @@
-// Type Node definition
+/*
+    Imports necessary libraries
+*/
 #include <iostream>
 #include <string>
 using namespace std;
 
+/*
+    Class definition for Node
+*/
 class Node
 {
 public:
@@ -18,6 +23,9 @@ public:
     }
 };
 
+/*
+    Class definition for Queue
+*/
 class Queue
 {
 public:

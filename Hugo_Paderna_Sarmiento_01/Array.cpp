@@ -5,6 +5,9 @@ using namespace std;
 // for string class
 #include <string>
 
+/*
+    This class creates an array of strings.
+*/
 class Array
 {
     public:
