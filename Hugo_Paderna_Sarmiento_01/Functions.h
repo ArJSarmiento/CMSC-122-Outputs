@@ -10,12 +10,8 @@ void input_validation(int &input)
 
 void input_validation_string(string &str)
 {
-    while (!(cin >> str))
-    {
-        cout << "Invalid input. Please enter a string: ";
-        cin.clear();
-        cin.ignore(100, '\n');
-    }
+    cin.ignore();
+    getline(cin, str);
 }
 
 void summary()
