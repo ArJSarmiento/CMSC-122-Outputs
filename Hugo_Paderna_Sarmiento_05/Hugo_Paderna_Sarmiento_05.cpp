@@ -4,7 +4,7 @@
         Francis Lloyd Hugo
         Rafael Paderna
     
-    This program creates a Binary Search Tree.
+    This program creates a Binary Search Tree of integers.
     The user can add, delete items, delete the tree, 
     find the maximum and minimum values, 
     find the predecessor and successor nodes,

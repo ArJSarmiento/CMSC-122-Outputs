@@ -4,7 +4,7 @@
         Francis Lloyd Hugo
         Rafael Paderna
     
-    This program creates a linked list of strings. 
+    This program creates a linked list of integers. 
     The user can add, delete items, delete the list and display the list.
     
     This source code the main runtime of the program as well as function definitions.
@@ -27,7 +27,7 @@ Node *insert_specific_position(Node *headptr, int value);
 Node *delete_item(Node *headptr);
 Node *delete_list(Node *headptr);
 void display_list(Node *head);
-int list_length(Node headptr);
+int list_length(Node *headptr);
 
 /*
     This function is the main runtime of the program
@@ -118,6 +118,9 @@ Node *add_item(Node *headptr)
         return insert_specific_position(headptr, value);
     case 0:
         break;
+    default:
+        cout << "\nInvalid input. Please try again.\n";
+        break;
     }
 
     return headptr;
@@ -193,24 +196,22 @@ Node *insert_specific_position(Node *headptr, int value)
     cout << "\nWhich position do you want the element to be added to? ";
     cin >> key;
 
+    if (key == 1)
+    {
+        return insert_start(headptr, value);
+    }
+
+    len = list_length(headptr);
+    // if the position doesn't exist
+    if (key < 1 || key > len + 1)
+    {
+        return insert_end(headptr, value);
+    }
+
     Node *ptr = headptr;
     Node *ptr2 = new Node();
     ptr2->data = value;
     ptr2->nextNode = NULL;
-
-    if (key == 1)
-    {
-        insert_start(headptr, value);
-        return headptr;
-    }
-
-    len = list_length(*headptr);
-    // if the position doesn't exist
-    if (key < 1 || key > len + 1)
-    {
-        insert_end(ptr, value);
-        return ptr;
-    }
 
     key--;
     while (key != 1)
@@ -231,10 +232,9 @@ Node *insert_specific_position(Node *headptr, int value)
     Input: head node
     Output: length of list
 */
-int list_length(Node headptr)
+int list_length(Node *headptr)
 {
-    Node *ptr;
-    ptr = &headptr;
+    Node *ptr = headptr;
     int len = 0;
 
     // iterates through list until it reaches the end
