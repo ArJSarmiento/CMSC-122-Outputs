@@ -24,8 +24,8 @@
 */
 void summary()
 {
-    cout << "\nList MENU" 
-         << "\n\t[1] Insert item"
+    cout <<"\nList MENU" 
+         <<"\n\t[1] Insert item"
          <<"\n\t[2] Delete item"
          <<"\n\t[3] Search item"
          <<"\n\t[4] Find maximum"

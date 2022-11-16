@@ -22,6 +22,32 @@ Queue *ENQUEUE(Node *node, Queue *queue);
 Queue *DEQUEUE(Queue *queue);
 
 /*
+    This function validates integer inputs. Loops until a valid input is entered.
+    Input: pointer of input integer
+    Output: none
+*/
+void input_validation(int &input)
+{
+    while (!(cin >> input))
+    {
+        cout << "Invalid input. Please enter a number: ";
+        cin.clear();
+        cin.ignore(100, '\n');
+    }
+}
+
+/*
+    This function validates string inputs. Gets the entire line of input. 
+    Input: pointer of input string
+    Output: none
+*/
+void input_validation_string(string &str)
+{
+    cin.ignore();
+    getline(cin, str);
+}
+
+/*
     This function displays the program summary with corresponding input
     Input: none
     Output: none
@@ -105,8 +131,8 @@ int main()
             }
             do{ // loops to delete every order and name within the queue
                 cout << "\nNow serving " << frontNode->order << " to customer " << frontNode->name << ".\n"; //prints every order and name from the queue
-                frontNode = frontNode->nextNode;
-                queue = DEQUEUE(queue);
+                frontNode = frontNode->nextNode; // points to the next node of the frontNode
+                queue = DEQUEUE(queue); // updates the queue
             }while (frontNode != NULL);
             cout << "\nAll orders have been served.\n";
         }
@@ -182,6 +208,11 @@ bool EMPTY(Queue *queue)
     return false;
 }
 
+/*
+    This function deletes the frontNode of the queue
+    Input: pointer to queue
+    Output: pointer to updated queue
+*/
 Queue *DEQUEUE(Queue *queue)
 {
     Node *temp = queue->frontNode;

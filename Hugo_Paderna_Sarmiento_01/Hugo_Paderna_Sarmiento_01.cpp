@@ -1,6 +1,16 @@
 /*
-    Import dependencies
+    Proponents:
+        Arnel Jan Sarmiento
+        Francis Lloyd Hugo
+        Rafael Paderna
+    
+    This program creates an array of integers. 
+    The user can add, delete items, delete the list and display the list.
+    
+    This source code the main runtime of the program as well as function definitions.
 */
+
+// Import dependencies
 #include "Array.cpp"
 #include "Functions.h"
 
@@ -21,21 +31,27 @@ int main()
         
         switch (choice)
         {
+        // Adds item to the array
         case 1:
             array = add_item(array);
             break;
+        // Deletes an item of the array
         case 2:
             array = delete_item(array);
             break;
+        // Displays the items in the array
         case 3:
             display_list(array);
             break;
+        // Deletes the items of the array
         case 4:
             delete_list(array);
             break;
+        // Exits the program
         case 0:
             cout << "\nExiting program...";
             break;
+        // Default case
         default:
             cout << "\nInvalid input. Please try again.\n";
             continue;

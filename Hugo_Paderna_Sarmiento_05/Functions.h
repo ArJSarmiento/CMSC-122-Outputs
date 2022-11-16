@@ -205,6 +205,11 @@ void DISPLAY(Node *root)
     cout << endl;
 }
 
+/*
+    This function determines the minimum item of the tree
+    Input: pointer of root node
+    Output: mminimum item of the tree
+*/
 Node *MIN(Node *root)
 {
     if (root == NULL) return root;
@@ -213,23 +218,29 @@ Node *MIN(Node *root)
     return MIN(root->left);
 }
 
+/*
+    This function determines the successor of an item in the tree
+    Input: pointer of root node, data to be searched
+    Output: pointer to successor
+*/
 Node *SUCCESSOR(Node *root, int data)
 {
-    //Search the tree if the item exists
+    // Search the tree if the item exists
     Node *current = SEARCH(root, data);
     if(current == NULL) return NULL;
 
-    //Case when Node has right subtree
+    // Case when Node has right subtree
     if(current->right != NULL)
         return MIN(current->right);
 
-    //Case when Node has no right subtree
+    // Case when Node has no right subtree
     else
     {
         Node *successor = NULL;
         Node *ancestor = root;
         while(ancestor != current)
         {
+            // Traversing of items in BST to find the successor
             if(current->data < ancestor->data)
             {
                 successor = ancestor;
@@ -242,23 +253,29 @@ Node *SUCCESSOR(Node *root, int data)
     }
 }
 
+/*
+    This function determines the predecessor of an item in the tree
+    Input: pointer of root node, data to be searched
+    Output: pointer to predecessor
+*/
 Node *PREDECESSOR(Node *root, int data)
 {
-    //Search the tree if the item exists
+    // Search the tree if the item exists
     Node *current = SEARCH(root, data);
     if(current == NULL) return NULL;
 
-    //Case when Node has left subtree
+    // Case when Node has left subtree
     if(current->left != NULL)
         return MAX(current->left);
 
-    //Case when Node has no left subtree
+    // Case when Node has no left subtree
     else
     {
         Node *predecessor = NULL;
         Node *ancestor = root;
         while(ancestor != current)
         {
+            // Traversing of items in BST to find the predecessor
             if(current->data > ancestor->data)
             {
                 predecessor = ancestor;

@@ -179,6 +179,11 @@ Stack *POP(Stack *stack)
     return stack;
 }
 
+/*
+    This function makes the stack null 
+    Input: pointer to the stack
+    Output: pointer to the new initialized stack
+*/
 Stack *MAKENULL(Stack *stack)
 {
     if (EMPTY(stack)) //guard clause if the stack is empty
@@ -199,8 +204,8 @@ Stack *MAKENULL(Stack *stack)
             Stack *newStack = new Stack(10); 
             return newStack;
         }
-        stack->topNode = node->prevNode;
-        delete node;
+        stack->topNode = node->prevNode; // point top node to the previous node
+        delete node; // delete temporary node
     } while (stack->topNode != NULL);
 
     return stack;

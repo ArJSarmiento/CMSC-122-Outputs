@@ -24,7 +24,6 @@ void input_validation_string(string &str)
     getline(cin, str);
 }
 
-
 /*
     This function prints the intruction set of the program.
     input: none
@@ -256,6 +255,12 @@ Array *delete_item(Array *array)
 
     return array;
 }
+
+/*
+    This function deletes the entire list from the array.
+    Input: pointer of array
+    Output: pointer of a new initialized array
+*/
 
 Array *delete_list(Array *array)
 {

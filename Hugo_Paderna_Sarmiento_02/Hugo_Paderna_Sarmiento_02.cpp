@@ -43,8 +43,8 @@ int main()
     for (choice = 6; choice != 0;) // loop until choice is 0
     {
         summary();
-
         cin >> choice;
+        
         // switch statement to perform operations corresponding to summary
         switch (choice)
         {
@@ -69,6 +69,32 @@ int main()
     }
 
     return 0;
+}
+
+/*
+    This function validates integer inputs. Loops until a valid input is entered.
+    Input: pointer of input integer
+    Output: none
+*/
+void input_validation(int &input)
+{
+    while (!(cin >> input))
+    {
+        cout << "Invalid input. Please enter a number: ";
+        cin.clear();
+        cin.ignore(100, '\n');
+    }
+}
+
+/*
+    This function validates string inputs. Gets the entire line of input. 
+    Input: pointer of input string
+    Output: none
+*/
+void input_validation_string(string &str)
+{
+    cin.ignore();
+    getline(cin, str);
 }
 
 /*
