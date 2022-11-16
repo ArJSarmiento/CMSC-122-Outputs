@@ -1,3 +1,16 @@
+/*
+    Proponents:
+        Arnel Jan Sarmiento
+        Francis Lloyd Hugo
+        Rafael Paderna
+    
+    This program creates a queue of strings.
+    The user can enqueue or dequeue items, empty the queue,
+    and display the first item of the queue.
+    
+    This source code is the main runtime of the program as well as function definitions.
+*/
+
 // import dependencies
 #include "Queue.cpp"
 
@@ -37,14 +50,17 @@ int main()
     int choice, value;
     string name, order;
 
+    // loops until choice is 0
     for (choice = 6; choice != 0;)
     {
+        // determine what to do with the program
+        // with program summary
         summary();
-
         cin >> choice;
 
         switch (choice) // use switch flow control structure
         {
+        // fall in line (enqueue)
         case 1:
         {
             cout << "\nYour name: ";
@@ -57,6 +73,7 @@ int main()
             queue = ENQUEUE(node, queue);
         }
             break; // this breaks from the switch(), not from the loop
+        // serve order (dequeue)
         case 2:
         {
             Node *frontNode = FRONT(queue);
@@ -68,6 +85,7 @@ int main()
             DEQUEUE(queue);
         }
             break;
+        // next order (first item of queue)
         case 3:
         {
             Node *frontNode = FRONT(queue);
@@ -76,6 +94,7 @@ int main()
             cout << "\nThe QUEUE is EMPTY. No order to serve.\n";
         }
             break;
+        // closing time (empty queue)
         case 4:
         {
             Node *frontNode = FRONT(queue);
@@ -84,7 +103,7 @@ int main()
             {
                 break;
             }
-            do{ //loops to delete every order and name within the queue
+            do{ // loops to delete every order and name within the queue
                 cout << "\nNow serving " << frontNode->order << " to customer " << frontNode->name << ".\n"; //prints every order and name from the queue
                 frontNode = frontNode->nextNode;
                 queue = DEQUEUE(queue);
@@ -92,8 +111,10 @@ int main()
             cout << "\nAll orders have been served.\n";
         }
             break;
+        // exit
         case 0:
             cout << "\nThe Order System has been terminated..."; 
+        // default case
         default:
             cout << "\nInvalid input. Please try again.\n";
             break;
@@ -144,14 +165,20 @@ Node *FRONT(Queue *queue)
     return queue->frontNode;
 }
 
+/*
+    This determines if the queue is empty or not.
+    Input: pointer to queue
+    Output: true if queue is empty, false otherwise
+*/
 bool EMPTY(Queue *queue)
 {
+    // assumes queue is empty when there is no front element
     if (FRONT(queue) == NULL)
     {
         cout << "\nThe QUEUE is EMPTY. No order to serve.\n";
         return true;
     }
-
+    
     return false;
 }
 

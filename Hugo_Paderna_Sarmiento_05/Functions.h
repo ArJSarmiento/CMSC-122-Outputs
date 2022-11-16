@@ -67,6 +67,11 @@ Node *INSERT(Node *root, int data)
     return root;
 }
 
+/*
+    This function inserts a node from the BST
+    Input: pointer of root node, data to be deleted
+    Output: pointer of new root node
+*/
 Node *DELETE(Node *root, int data)
 {
     // Search root node to be deleted
@@ -111,6 +116,11 @@ Node *DELETE(Node *root, int data)
     return root;
 }
 
+/*
+    This function determines the maximum item of the tree
+    Input: pointer of root node
+    Output: maximum item of the tree
+*/
 Node *MAX(Node *root)
 {
     if (root == NULL)
@@ -122,11 +132,17 @@ Node *MAX(Node *root)
     return MAX(root->right);
 }
 
+/*
+    This function searches for an item in the BST
+    Input: pointer of root node, data to be searched
+    Output: pointer of new root node
+*/
 Node *SEARCH(Node *root, int data)
 {
     if (root == NULL || root->data == data)
         return root;
 
+    // recursive function to search for item
     if (data > root->data)
         return SEARCH(root->right, data);
     

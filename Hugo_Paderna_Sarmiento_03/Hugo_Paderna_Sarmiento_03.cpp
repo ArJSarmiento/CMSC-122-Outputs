@@ -1,3 +1,16 @@
+/*
+    Proponents:
+        Arnel Jan Sarmiento
+        Francis Lloyd Hugo
+        Rafael Paderna
+    
+    This program creates a stack of strings.
+    The user can push or pop items, delete the stack,
+    and display the top item of the stack.
+    
+    This source is code the main runtime of the program as well as function definitions.
+*/
+
 // Type Node definition
 #include "Stack.cpp"
 
@@ -24,7 +37,7 @@ void summary()
     cout << "\n\nEnter choice: ";
 }
 
-// Function if the main runtime of the program
+// Function of the main runtime of the program
 int main()
 {
     Stack *stack = new Stack(10); 
@@ -35,34 +48,41 @@ int main()
     // loops until choice is 0
     for (choice = 6; choice != 0;)
     {
+        // determine what to do with the program
+        // with program summary
         summary();
-
         cin >> choice;
 
         switch (choice) // use switch flow control structure
         {
+        // add kitchenware (push)
         case 1:
             cout << "\nAdd kitchenware (ex. Plate, Bowl, etc.) to be washed: ";
             cin >> kitchenware;
             stack = PUSH(kitchenware, stack);
             break; // this breaks from the switch(), not from the loop
+        // wash kitchenware (pop)
         case 2:
             stack = POP(stack);
             break;
+        // top kitchenware (top item of stack)
         case 3:
             TOP(stack);
             break;
+        // wash all (delete stack)
         case 4:
             MAKENULL(stack);
             break;
+        // exit
         case 0:
             cout << "\nThe Washing Machine process has been terminated...\n"; // colorPrint adds color to the text; 12 corresponds to red
+        // default case
         default:
             cout << "\nInvalid input. Please try again.\n";
             break;
         }
     }
-
+    
     return 0;
 }
 
@@ -125,17 +145,25 @@ void TOP(Stack *stack)
     cout << "\n" << stack->topNode->data << " is next to be washed.\n";
 }
 
+/*
+    This function deletes an item from the stack
+    Input: pointer to the stack
+    Output: pointer to the new stack with top value deleted
+*/
 Stack *POP(Stack *stack)
 {
-    if (EMPTY(stack))
+    // guard clause for empty stack
+    if (EMPTY(stack)) 
     {
         cout << "\nThe STACK is EMPTY. No kitchenware to wash.\n";
         return stack;
     }
 
+    // display current element being deleted
     cout << "\n" << stack->topNode->data << " is being washed.\n";
 
-    Node *node = new Node(); // temporary node
+    // temporary node
+    Node *node = new Node(); 
     node = stack->topNode;
 
     if (node->prevNode == NULL) // clears old stack if last node is cleared
@@ -145,8 +173,8 @@ Stack *POP(Stack *stack)
         return newStack;
     }
 
-    stack->topNode = node->prevNode;
-    delete node;
+    stack->topNode = node->prevNode; // point top node to the previous node
+    delete node; // delete temporary node
     
     return stack;
 }

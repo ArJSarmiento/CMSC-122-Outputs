@@ -45,7 +45,7 @@ int main()
         summary();
 
         cin >> choice;
-        // switch statement to perform opertations corresponding to summary
+        // switch statement to perform operations corresponding to summary
         switch (choice)
         {
         case 1:
@@ -59,7 +59,9 @@ int main()
             break;
         case 4:
             head = delete_list(head);
-            cout << "\nExiting program";
+            break;
+        case 0:
+            cout << "\nExiting program...";
         default:
             cout << "\nInvalid input. Please try again.\n";
             break;
@@ -273,7 +275,11 @@ void display_list(Node *head)
     cout << "\n";
 }
 
-// this function deletes an element in the list
+/*
+    This function deletes an element in the list.
+    Input: pointer of head node, value of item to be deleted
+    Output: pointer of head node of new list
+*/
 Node *delete_item(Node *headptr)
 {
     int value, i;
@@ -309,8 +315,10 @@ Node *delete_item(Node *headptr)
     }
 
     // if item is not present in the list
-    if (ptr == NULL)
+    if (ptr->data != value)
     {
+        delete ptr;
+        cout << "\nThe list contains no such element.";
         return headptr;
     }
 
@@ -319,7 +327,11 @@ Node *delete_item(Node *headptr)
     return headptr;
 }
 
-// this function deletes the entire list
+/*
+    This function deletes the entire list.
+    Input: pointer of head node
+    Output: pointer of head node of new list
+*/
 Node *delete_list(Node *headptr)
 {
     // guard clause for empty list
@@ -329,23 +341,22 @@ Node *delete_list(Node *headptr)
         return headptr;
     }
 
+    // set two temporary nodes
     Node *temp_node, *ptr;
-
     ptr = headptr;
     temp_node = new Node();
-
     temp_node->nextNode = NULL;
 
     // delete every item as list is traversed through
     while (ptr->nextNode != NULL)
     {
         temp_node = ptr->nextNode;
-        free(ptr);
+        delete ptr;
         ptr = temp_node;
     }
 
     cout << "\nThe list has been emptied.\n";
 
-    headptr = NULL;
+    headptr = NULL; // return null node
     return headptr;
 }

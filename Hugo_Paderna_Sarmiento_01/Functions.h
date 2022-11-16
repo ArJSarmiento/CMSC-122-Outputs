@@ -208,6 +208,11 @@ Array *add_item(Array *array)
     return array;
 }
 
+/*
+    This function deletes an item from the array.
+    Input: pointer of array
+    Output: pointer of new array with a deleted value
+*/
 Array *delete_item(Array *array)
 {
     string value;
