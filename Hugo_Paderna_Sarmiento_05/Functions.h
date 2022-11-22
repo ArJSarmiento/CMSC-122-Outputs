@@ -6,12 +6,12 @@
 Node *INSERT(Node *root, int data, int counter);
 Node *DELETE(Node *root, int data);
 Node *MAX(Node *root);
+Node *MIN(Node *root);
 Node *SEARCH(Node *root, int data);
 void PREORDER(Node *root);
 void INORDER(Node *root);
 void POSTORDER(Node *root);
 void DISPLAY(Node *root);
-Node *FINDMINIMUM(Node *root);
 Node *SUCCESSOR(Node *root, int data);
 Node *PREDECESSOR(Node *root, int data);
 
@@ -84,35 +84,37 @@ Node *DELETE(Node *root, int data)
     else if (data > root->data) 
         root->right = DELETE(root->right, data);
 
-    // Leaf node case
-    if (root->left == NULL && root->right == NULL)
-    {
-        delete root;
-        root = NULL;
-    }
-
-    // Case of one child
-    else if (root->left == NULL) // left side is empty
-    {
-        struct Node *temp = root;
-        root = root->right;
-        delete temp;
-    }
-    else if (root->right == NULL) // right side is empty
-    {
-        struct Node *temp = root;
-        root = root->left;
-        delete temp;
-    }
-    
-    // Case of two children
+    // Determine number of childs then delete
     else 
     {
-        struct Node *temp = MAX(root->left);
-        root->data = temp->data;
-        root->left = DELETE(root->left, temp->data);
-    }
+        if (root->left == NULL && root->right == NULL)
+        {
+            delete root;
+            root = NULL;
+        }
 
+        // Case of one child
+        else if (root->left == NULL) // left side is empty
+        {
+            struct Node *temp = root;
+            root = root->right;
+            delete temp;
+        }
+        else if (root->right == NULL) // right side is empty
+        {
+            struct Node *temp = root;
+            root = root->left;
+            delete temp;
+        }
+        
+        // Case of two children
+        else 
+        {
+            struct Node *temp = MIN(root->right);
+            root->data = temp->data;
+            root->right = DELETE(root->right, temp->data);
+        }
+    }
     return root;
 }
 

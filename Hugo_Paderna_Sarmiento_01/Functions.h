@@ -32,12 +32,12 @@ void input_validation_string(string &str)
 void summary()
 {
     cout << "\nList MENU"
-         << "\n\t[1]Add Item"
+         << "\n\n\t[1]Add Item"
          << "\n\t[2]Delete Item"
          << "\n\t[3]Display List"
          << "\n\t[4]Delete List"
          << "\n\t[0]Exit Program"
-         << "\nEnter choice: "
+         << "\n\nEnter choice: "
          << endl;
 }
 
@@ -214,46 +214,64 @@ Array *add_item(Array *array)
 */
 Array *delete_item(Array *array)
 {
+    // guard clause for empty list
+    if (array->end < 0)
+    {
+        cout << "\nThe list is empty.\n";
+        return array;
+    }
+
     string value;
 
     cout << "\nPlease enter the item to be deleted: ";
     input_validation_string(value);
+     
+    int i, pos;
 
-    int i, j, position;
+    // determine position of item to be deleted
     for (i = 0; i <= array->end; i++)
     {
+        pos = i;
+
         if (array->items[i] == value)
-        {
-            {
-                for (j = i; j < array->end; j++);
-                {
-                    array->items[j] = array->items[j+1];
-                }
-            }
-            position = i;
-            break;
-        }
+            break; // break from for loop if position is found
     }
 
-    if (position == 0)
+    // item does not exist in the list
+    if (array->items[i] != value)
     {
         cout << ("\nThe list contains no such element.");
         return array;
     }
 
+    // item exists in the list
     else
     {
-        cout << "\nThe element " << value << ", which is at position " << position << ", has been deleted.";
+        cout << "\nThe element " << value << ", which is at position " << pos << ", has been deleted.";
 
-        for (i = position; i < array->end-1; i++)
+        string *temp = new string[array->max - 1]; // temporary array with deleted item
+
+        for (i = 0; i < array->end + 1; i++)
         {
-            array->items[i] = array->items[i+1];
+            // copy all items from original array until position of item to be deleted
+            if (i < pos)
+            {
+                temp[i] = array->items[i]; 
+            }
+            
+            // skip over deleted item's position and shift items to the left
+            else
+            {
+                temp[i] = array->items[i+1];
+            }
         }
+
+        delete[] array->items; // delete original array
+        array->items = temp;
+        array->end -= 1; // decrease size of array by 1
 
         return array;
     }
-
-    return array;
 }
 
 /*
