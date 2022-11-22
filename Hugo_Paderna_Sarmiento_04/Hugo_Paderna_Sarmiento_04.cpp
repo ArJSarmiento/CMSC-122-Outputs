@@ -4,7 +4,7 @@
         Francis Lloyd Hugo
         Rafael Paderna
     
-    This program creates a queue of strings.
+    This program creates a Queue of strings.
     The user can enqueue or dequeue items, empty the queue,
     and display the first item of the queue.
     
@@ -15,37 +15,13 @@
 #include "Queue.cpp"
 
 // function prototype declaration
+void input_validation(int &input);
+void input_validation_string(string &str);
 Queue *INIT();
 bool EMPTY(Queue *queue);
 Node *FRONT(Queue *queue);
 Queue *ENQUEUE(Node *node, Queue *queue);
 Queue *DEQUEUE(Queue *queue);
-
-/*
-    This function validates integer inputs. Loops until a valid input is entered.
-    Input: pointer of input integer
-    Output: none
-*/
-void input_validation(int &input)
-{
-    while (!(cin >> input))
-    {
-        cout << "Invalid input. Please enter a number: ";
-        cin.clear();
-        cin.ignore(100, '\n');
-    }
-}
-
-/*
-    This function validates string inputs. Gets the entire line of input. 
-    Input: pointer of input string
-    Output: none
-*/
-void input_validation_string(string &str)
-{
-    cin.ignore();
-    getline(cin, str);
-}
 
 /*
     This function displays the program summary with corresponding input
@@ -82,7 +58,7 @@ int main()
         // determine what to do with the program
         // with program summary
         summary();
-        cin >> choice;
+        input_validation(choice);
 
         switch (choice) // use switch flow control structure
         {
@@ -140,6 +116,7 @@ int main()
         // exit
         case 0:
             cout << "\nThe Order System has been terminated..."; 
+            break;
         // default case
         default:
             cout << "\nInvalid input. Please try again.\n";
@@ -148,6 +125,32 @@ int main()
     }
 
     return 0;
+}
+
+/*
+    This function validates integer inputs. Loops until a valid input is entered.
+    Input: pointer of input integer
+    Output: none
+*/
+void input_validation(int &input)
+{
+    while (!(cin >> input))
+    {
+        cout << "Invalid input. Please enter a number: ";
+        cin.clear();
+        cin.ignore(100, '\n');
+    }
+}
+
+/*
+    This function validates string inputs. Gets the entire line of input. 
+    Input: pointer of input string
+    Output: none
+*/
+void input_validation_string(string &str)
+{
+    cin.ignore();
+    getline(cin, str);
 }
 
 /*

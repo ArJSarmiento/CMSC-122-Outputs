@@ -4,7 +4,7 @@
         Francis Lloyd Hugo
         Rafael Paderna
     
-    This program creates a stack of strings.
+    This program creates a Stack of strings.
     The user can push or pop items, delete the stack,
     and display the top item of the stack.
     
@@ -76,6 +76,7 @@ int main()
         // exit
         case 0:
             cout << "\nThe Washing Machine process has been terminated...\n"; // colorPrint adds color to the text; 12 corresponds to red
+            break;
         // default case
         default:
             cout << "\nInvalid input. Please try again.\n";

@@ -4,7 +4,7 @@
         Francis Lloyd Hugo
         Rafael Paderna
     
-    This program creates an array of integers. 
+    This program creates an Array of strings. 
     The user can add, delete items, delete the list and display the list.
     
     This source code the main runtime of the program as well as function definitions.

@@ -4,7 +4,7 @@
         Francis Lloyd Hugo
         Rafael Paderna
     
-    This program creates a linked list of integers. 
+    This program creates a Linked List of strings. 
     The user can add, delete items, delete the list and display the list.
     
     This source code the main runtime of the program as well as function definitions.
@@ -19,6 +19,8 @@ using namespace std;
 #include "Node.cpp"
 
 // function prototype declaration
+void input_validation(int &input);
+void input_validation_string(string &str);
 void summary();
 Node *add_item(Node *headptr);
 Node *insert_start(Node *headptr, int value);
@@ -43,7 +45,7 @@ int main()
     for (choice = 6; choice != 0;) // loop until choice is 0
     {
         summary();
-        cin >> choice;
+        input_validation(choice);
         
         // switch statement to perform operations corresponding to summary
         switch (choice)
@@ -62,6 +64,7 @@ int main()
             break;
         case 0:
             cout << "\nExiting program...";
+            break;
         default:
             cout << "\nInvalid input. Please try again.\n";
             break;
@@ -356,7 +359,7 @@ Node *delete_item(Node *headptr)
 /*
     This function deletes the entire list.
     Input: pointer of head node
-    Output: pointer of head node of new list
+    Output: pointer to head node of new list
 */
 Node *delete_list(Node *headptr)
 {
