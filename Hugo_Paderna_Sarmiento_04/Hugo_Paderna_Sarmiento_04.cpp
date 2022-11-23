@@ -66,12 +66,11 @@ int main()
         case 1:
         {
             cout << "\nYour name: ";
-            cin >> name;
+            input_validation_string(name);
             cout << "\nYour order: ";
-            cin >> order;
-            
-            Node *node = new Node(name, order);
+            getline(cin, order);
 
+            Node *node = new Node(name, order);
             queue = ENQUEUE(node, queue);
         }
             break; // this breaks from the switch(), not from the loop
