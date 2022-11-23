@@ -19,6 +19,8 @@ Stack *PUSH(string kw, Stack *stack);
 Stack *POP(Stack *stack);
 Stack *MAKENULL(Stack *stack);
 void TOP(Stack *stack);
+void input_validation(int &input);
+void input_validation_string(string &str);
 
 /*
     This function displays the summary of the program with corresponding inputs
@@ -34,7 +36,7 @@ void summary()
         <<"\n\t[4] Wash all"
         <<"\n\t[0] Exit"
         << endl;
-    cout << "\n\nEnter choice: ";
+    cout << "\nEnter choice: ";
 }
 
 // Function of the main runtime of the program
@@ -51,14 +53,14 @@ int main()
         // determine what to do with the program
         // with program summary
         summary();
-        cin >> choice;
+        input_validation(choice);
 
         switch (choice) // use switch flow control structure
         {
         // add kitchenware (push)
         case 1:
             cout << "\nAdd kitchenware (ex. Plate, Bowl, etc.) to be washed: ";
-            cin >> kitchenware;
+            input_validation_string(kitchenware);
             stack = PUSH(kitchenware, stack);
             break; // this breaks from the switch(), not from the loop
         // wash kitchenware (pop)
@@ -210,4 +212,30 @@ Stack *MAKENULL(Stack *stack)
     } while (stack->topNode != NULL);
 
     return stack;
+}
+
+/*
+    This function validates integer inputs. Loops until a valid input is entered.
+    Input: pointer of input integer
+    Output: none
+*/
+void input_validation(int &input)
+{
+    while (!(cin >> input))
+    {
+        cout << "Invalid input. Please enter a number: ";
+        cin.clear();
+        cin.ignore(100, '\n');
+    }
+}
+
+/*
+    This function validates string inputs. Gets the entire line of input. 
+    Input: pointer of input string
+    Output: none
+*/
+void input_validation_string(string &str)
+{
+    cin.ignore();
+    getline(cin, str);
 }

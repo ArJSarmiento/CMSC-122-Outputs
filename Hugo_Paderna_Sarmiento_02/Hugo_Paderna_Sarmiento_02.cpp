@@ -128,7 +128,7 @@ Node *add_item(Node *headptr)
     int choice, value;
 
     cout << "\nPlease enter the item to be added: ";
-    cin >> value;
+    input_validation(value);
 
     cout << "\nWhere to add the item?"
          << "\n\t[1]Start of the list"
@@ -137,7 +137,7 @@ Node *add_item(Node *headptr)
          << "\n\t[0]Cancel"
          << "\nEnter choice: ";
 
-    cin >> choice;
+    input_validation(choice);
 
     switch (choice)
     {
@@ -225,7 +225,7 @@ Node *insert_specific_position(Node *headptr, int value)
     int key, len;
 
     cout << "\nWhich position do you want the element to be added to? ";
-    cin >> key;
+    input_validation(key);
 
     if (key == 1)
     {
@@ -321,7 +321,7 @@ Node *delete_item(Node *headptr)
     }
 
     cout << "\nPlease enter the item to be deleted: ";
-    cin >> value;
+    input_validation(value);
 
     Node *ptr, *prev;
     ptr = headptr;
