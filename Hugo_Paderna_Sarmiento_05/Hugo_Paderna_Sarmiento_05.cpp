@@ -69,7 +69,14 @@ int main()
             cout << "\nInput number to be deleted: ";
             input_validation(data);
 
-            root = DELETE(root, data);
+            Node *node = SEARCH(root, data);
+            if (node == NULL)
+                cout << "\nItem not found!" << endl;
+            else
+            {
+                root = DELETE(root, data);
+                cout << "\nItem deleted!" << endl;
+            }
         }
             break;
         case 3:
@@ -88,20 +95,34 @@ int main()
         {
             Node *temp = MAX(root);
             if (temp != NULL)
+            {
                 cout << "\nMaximum item: " << temp->data << "\n";
+                break;
+            }
+            cout << "\nTree is empty!" << endl;
         }
             break;
         case 5:
         {
             Node *temp = MIN(root);
             if (temp != NULL)
+            {
                 cout << "\nMininum Item: " <<  temp->data << "\n"; //outputs Minimum value of the BST
+                break;
+            }
+            cout << "\nTree is empty!" << endl;
         }
             break;
         case 6: 
         {
             cout << "\nInput a number: ";
             input_validation(data);
+            
+            if (SEARCH(root, data)  == NULL)
+            {
+                cout << "\nItem not found!" << endl;
+                break;
+            }
 
             Node *temp = SUCCESSOR(root, data);
             if(temp == NULL)
@@ -114,6 +135,11 @@ int main()
         {
             cout << "\nInput a number: ";
             input_validation(data);
+            if (SEARCH(root, data)  == NULL)
+            {
+                cout << "\nItem not found!" << endl;
+                break;
+            }
 
             Node *temp = PREDECESSOR(root, data);
             if(temp == NULL)
@@ -123,6 +149,11 @@ int main()
         }
             break;
         case 8: 
+            if (root == NULL)
+            {
+                cout << "\nTree is empty!" << endl;
+                break;
+            }
             DISPLAY(root);
             break;
         case 0: 
