@@ -13,6 +13,11 @@ void input_validation(int &input)
     }
 }
 
+/*
+    This function displays the menu
+    Input: none
+    Output: none
+*/
 void summary()
 {
     cout <<"\nSorting Demonstration"
@@ -25,6 +30,41 @@ void summary()
          << "\nEnter choice: ";
 }
 
+/*
+    This function iterates through the array and displays the items
+    Input: none
+    Output: none
+*/
+void display_list(vector<int> array)
+{
+    cout << "\nDisplaying array: ";
+    for (int i = 0; i < array.size(); i++)
+    {
+        cout << array[i] << " ";
+    }
+    cout << endl;
+}
+
+/*
+    This function asks the user for input and adds the number into the array 
+    Input: initial array 
+    Output: updated array
+*/
+
+vector<int> add_item(vector<int> array)
+{
+    int value;
+    cout << "\nEnter value: ";
+    input_validation(value);
+    array.push_back(value);
+    return array;
+}
+
+/*
+    This function performs radix sort on the array
+    Input: input vector array
+    Output: none
+*/
 void radix_sort(vector<int> array)
 {
 
@@ -38,23 +78,4 @@ void merge_sort(vector<int> array)
 void selection_sort(vector<int> array)
 {
 
-}
-
-void display_list(vector<int> array)
-{
-    cout << "\nDisplaying array: ";
-    for (int i = 0; i < array.size(); i++)
-    {
-        cout << array[i] << " ";
-    }
-    cout << endl;
-}
-
-vector<int> add_item(vector<int> array)
-{
-    int value;
-    cout << "\nEnter value: ";
-    input_validation(value);
-    array.push_back(value);
-    return array;
 }
