@@ -104,7 +104,6 @@ class Graph
             return false;
         }
 
-        // Traverse the graph using breadth-first search
         void BFS() {
             //initialize Queue
             queue<Node*> q;
@@ -139,7 +138,6 @@ class Graph
             }
         }
 
-        // Traverse the graph using breadth-first search
         bool BFS(char value) {
             //initialize Queue
             queue<Node*> q;

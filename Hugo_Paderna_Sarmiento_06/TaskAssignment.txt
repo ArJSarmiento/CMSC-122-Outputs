@@ -1,0 +1,20 @@
+Assignment of Remaining Functionality
+
+FOR FORMAL COMMENTS
+
+RAFA
+Graph graphChoice (Graph g1, Graph g2)
+Graph createG1()
+Graph createG2()
+class Graph
+void addNode(char value)
+Graph(char *values, int size)
+
+FRANCIS
+void DFS()
+bool DFS(char value)
+void BFS() {
+bool BFS(char value) {
+Node* getNode(char value)
+void addEdge(char value1, char value2)
+Main File description

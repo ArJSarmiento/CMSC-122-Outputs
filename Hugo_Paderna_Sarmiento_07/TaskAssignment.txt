@@ -1,0 +1,5 @@
+Assignment of Remaining Functionality
+
+[3] Perform SELECTION SORT Arnel
+[4] Perform MERGE SORT Rafa
+[5] Perform RADIX SORT Francis
