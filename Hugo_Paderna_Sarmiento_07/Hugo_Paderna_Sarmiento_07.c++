@@ -49,7 +49,7 @@ int main()
             break;
         //performs selection sort
         case 3:
-            selection_sort(array);
+            array = selection_sort(array);
             break;
         // performs merge sort
         case 4:

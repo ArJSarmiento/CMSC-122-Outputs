@@ -75,7 +75,31 @@ void merge_sort(vector<int> array)
 
 }
 
-void selection_sort(vector<int> array)
+/*
+    This function performs selection sort on the array
+    Input: input vector array
+    Output: sorted vector array
+*/
+vector<int> selection_sort(vector<int> array)
 {
+    // Get the length of the array
+    int length = array.size();
 
+    // Loop through the entire array
+    for (int i = 0; i < length - 1; i++)
+    {
+        // Find the minimum element in the unsorted array
+        int min_idx = i;
+        for (int j = i + 1; j < length; j++)
+        {
+            if (array[j] < array[min_idx])
+            {
+                min_idx = j;
+            }
+        }
+        int temp = array[min_idx];
+        array[min_idx] = array[i];
+        array[i] = temp;
+    }
+    return array;
 }
