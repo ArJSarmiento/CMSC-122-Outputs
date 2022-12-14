@@ -24,16 +24,16 @@ Graph createG2()
     g2.addEdge('a', 'f');
     g2.addEdge('a', 'k');
     g2.addEdge('c', 'b');
-    g2.addEdge('c', 'g');
     g2.addEdge('c', 'd');
-    g2.addEdge('d', 'h');
+    g2.addEdge('c', 'g');
     g2.addEdge('d', 'e');
+    g2.addEdge('d', 'h');
     g2.addEdge('e', 'i');
     g2.addEdge('f', 'j');
     g2.addEdge('g', 'h');
+    g2.addEdge('g', 'l');
     g2.addEdge('h', 'i');
     g2.addEdge('i', 'j');
-    g2.addEdge('g', 'l');
     g2.addEdge('k', 'l');
     return g2;
 }
