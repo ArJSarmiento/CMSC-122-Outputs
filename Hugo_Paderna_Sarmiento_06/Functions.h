@@ -7,9 +7,9 @@ Graph createG1()
     g1.addEdge('A', 'G');
     g1.addEdge('B', 'E');
     g1.addEdge('E', 'G');
-    g1.addEdge('F', 'D');
     g1.addEdge('F', 'B');
     g1.addEdge('F', 'C');
+    g1.addEdge('F', 'D');
     g1.addEdge('C', 'H');
     return g1;
 }

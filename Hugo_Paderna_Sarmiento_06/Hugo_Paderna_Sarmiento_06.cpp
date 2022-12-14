@@ -46,7 +46,7 @@ int main()
             cout << "\nInput character to be searched: ";
             cin >> data;
             Graph G = graphChoice(g1, g2);
-            cout << "\nPerforming DFS Search...\n" << endl;
+            cout << "\nPerforming DFS Search...\n\n" << endl;
             G.DFS(data) ? cout << data << " is Found in the Graph" << endl: 
                 cout << data << " is Not Found in the Graph" << endl;
         }
@@ -56,7 +56,7 @@ int main()
             cout << "\nInput character to be searched: ";
             cin >> data;
             Graph G = graphChoice(g1, g2);
-            cout << "\nPerforming BFS Search...\n" << endl;
+            cout << "\nPerforming BFS Search...\n\n" << endl;
             G.BFS(data) ? cout << data << " is Found in the Graph" << endl: 
                 cout << data << " is Not Found in the Graph" << endl;
         }

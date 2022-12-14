@@ -52,10 +52,11 @@ class Graph
                     visited.insert(node->value);
                     cout << node->value << endl;
 
-                    //itereate through neighbors reverse
+                    //iterate through neighbors reverse
                     for (int i = node->neighbors.size() - 1; i >= 0; i--)
                     {
                         Node* neighbor = node->neighbors[i];
+                        // if neighbor is not visited, push to stack
                         if (visited.find(neighbor->value) == visited.end())
                         {
                             s.push(neighbor);
@@ -88,7 +89,7 @@ class Graph
                     if (node->value == value)
                         return true;
 
-                    //itereate through neighbors reverse
+                    //iterate through neighbors reverse
                     for (int i = node->neighbors.size() - 1; i >= 0; i--)
                     {
                         Node* neighbor = node->neighbors[i];
@@ -125,8 +126,8 @@ class Graph
                     visited.insert(node->value);
                     cout << node->value << endl;
 
-                    //itereate through neighbors
-                    for (int i = node->neighbors.size() - 1; i >= 0; i--)
+                    //iterate through neighbors
+                    for (int i = 0; i < node->neighbors.size(); i++)
                     {
                         Node* neighbor = node->neighbors[i];
                         if (visited.find(neighbor->value) == visited.end())
@@ -161,8 +162,8 @@ class Graph
                     visited.insert(node->value);
                     cout << node->value << endl;
 
-                    //itereate through neighbors
-                    for (int i = node->neighbors.size() - 1; i >= 0; i--)
+                    //iterate through neighbors
+                    for (int i = 0; i < node->neighbors.size(); i++)
                     {
                         Node* neighbor = node->neighbors[i];
                         if (neighbor->value == value)
