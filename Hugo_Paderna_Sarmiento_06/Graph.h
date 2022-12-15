@@ -1,3 +1,6 @@
+/*
+    Class definition for Graph
+*/
 class Graph
 {
     private:
@@ -16,11 +19,24 @@ class Graph
         vector<Node*> nodes;
 
     public:
+
+        /*
+            This function adds a node to the graph.
+            Input: value of node
+            Output: none
+        */
+
         void addNode(char value)
         {
             Node* node = new Node(value);
             nodes.push_back(node);
         }
+
+        /*
+            This is a constructor for the Graph class.
+            Input: array of values, size of array
+            Output: graph with input size and values
+        */
 
         Graph(char *values, int size)
         {
@@ -223,7 +239,7 @@ class Graph
         /*
             This function connects two vertices.
             Input: 1st Character value of vertex, 2nd Character value of vertex
-            Output: connecetd vertices
+            Output: connected vertices
         */
         void addEdge(char value1, char value2)
         {

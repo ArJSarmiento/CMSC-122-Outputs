@@ -1,3 +1,9 @@
+/*
+    This function creates the given Graph 1.
+    Input: none
+    Output: Graph 1
+*/
+
 Graph createG1()
 {
     char values[] = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H' };
@@ -13,6 +19,12 @@ Graph createG1()
     g1.addEdge('C', 'H');
     return g1;
 }
+
+/*
+    This function creates the given Graph 2.
+    Input: none
+    Output: Graph 2
+*/
 
 Graph createG2()
 {
@@ -80,6 +92,12 @@ void summary()
          <<"\n\t[0] Exit"
          << "\nEnter choice: ";
 }
+
+/*
+    This function lets the user choose a graph to perform traversal on.
+    Input: graph choice
+    Output: desired graph
+*/
 
 Graph graphChoice (Graph g1, Graph g2)
 {
