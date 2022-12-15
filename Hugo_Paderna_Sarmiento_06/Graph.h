@@ -30,6 +30,11 @@ class Graph
             }
         }
 
+        /*
+            This function traverses a graph using Depth-First Search.
+            Input: none
+            Output: Displays traversed graph using DFS
+        */
         void DFS()
         {
             //initialize Stack
@@ -52,7 +57,7 @@ class Graph
                     visited.insert(node->value);
                     cout << node->value << endl;
 
-                    //iterate through neighbors reverse
+                    //iterate through neighbors in reverse
                     for (int i = node->neighbors.size() - 1; i >= 0; i--)
                     {
                         Node* neighbor = node->neighbors[i];
@@ -66,6 +71,11 @@ class Graph
             }
         }
 
+        /*
+            This function searches an item in the graph using Depth-First Search.
+            Input: Character input
+            Output: true if input is an item of the graph, false otherwise
+        */
         bool DFS(char value)
         {
             //initialize Stack
@@ -89,12 +99,13 @@ class Graph
                     if (node->value == value)
                         return true;
 
-                    //iterate through neighbors reverse
+                    //iterate through neighbors in reverse
                     for (int i = node->neighbors.size() - 1; i >= 0; i--)
                     {
                         Node* neighbor = node->neighbors[i];
                         if (neighbor->value == value)
                             return true;
+                        // if neighbor is not visited, push to stack
                         if (visited.find(neighbor->value) == visited.end())
                         {
                             s.push(neighbor);
@@ -105,6 +116,11 @@ class Graph
             return false;
         }
 
+        /*
+            This function traverses a graph using Breadth-First Search.
+            Input: none
+            Output: Displays traversed graph using BFS
+        */
         void BFS() {
             //initialize Queue
             queue<Node*> q;
@@ -130,6 +146,7 @@ class Graph
                     for (int i = 0; i < node->neighbors.size(); i++)
                     {
                         Node* neighbor = node->neighbors[i];
+                        // if neighbor is not visited, push to queue
                         if (visited.find(neighbor->value) == visited.end())
                         {
                             q.push(neighbor);
@@ -139,6 +156,11 @@ class Graph
             }
         }
 
+        /*
+            This function searches an item in the graph using Breadth-First Search.
+            Input: Character input
+            Output: true if input is an item of the graph, false otherwise
+        */
         bool BFS(char value) {
             //initialize Queue
             queue<Node*> q;
@@ -168,6 +190,7 @@ class Graph
                         Node* neighbor = node->neighbors[i];
                         if (neighbor->value == value)
                             return true;
+                        // if neighbor is not visited, push to queue
                         if (visited.find(neighbor->value) == visited.end())
                         {
                             q.push(neighbor);
@@ -178,10 +201,17 @@ class Graph
             return false;
         }
 
+        /*
+            This function acquires a value of a vertex within the graph.
+            Input: Character input
+            Output: value of vertex
+        */
         Node* getNode(char value)
         {
+            // iterates through the vertices in the graph
             for (int i = 0; i < nodes.size(); i++)
             {
+                // returns the value of the vertex
                 if (nodes[i]->value == value)
                 {
                     return nodes[i];
@@ -190,11 +220,17 @@ class Graph
             return NULL;
         }
 
+        /*
+            This function connects two vertices.
+            Input: 1st Character value of vertex, 2nd Character value of vertex
+            Output: connecetd vertices
+        */
         void addEdge(char value1, char value2)
         {
             Node* node1 = getNode(value1);
             Node* node2 = getNode(value2);
 
+            // returns none if both inputs are equal to NULL
             if (node1 == NULL || node2 == NULL)
                 return;
 

@@ -1,4 +1,17 @@
 /*
+    Proponents:
+        Arnel Jan Sarmiento
+        Francis Lloyd Hugo
+        Rafael Paderna
+    
+    This program contains two predefined graphs. 
+    The user can traverse the graph and search an item 
+    using Depth-First Search and Breadth-First Search.
+    
+    This source code the main runtime of the program as well as function definitions.
+*/
+
+/*
     This script imports all the standard libraries and the necessary classes
 */
 #include <iostream>
