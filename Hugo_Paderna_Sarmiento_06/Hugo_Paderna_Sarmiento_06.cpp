@@ -24,6 +24,11 @@ using namespace std;
 #include "Graph.h"
 #include "Functions.h"
 
+/*
+    This function is the main runtime of the program
+    Input: none
+    Output: 0
+*/
 int main()
 {
     Graph g1 = createG1();
@@ -40,21 +45,21 @@ int main()
 
         switch (choice) // use switch flow control structure
         {
-        case 1:
+        case 1: // case 1: DFS Traversal
         {
             Graph G = graphChoice(g1, g2);
             cout << "\nPerforming DFS Traversal..." << endl;
             G.DFS();
         }
         break; // this breaks from the switch(), not from the loop
-        case 2:
+        case 2: // case 2: BFS Traversal
         {
             Graph G = graphChoice(g1, g2);
             cout << "\nPerforming BFS Traversal..." << endl;
             G.BFS();
         }
         break;
-        case 3:
+        case 3: // case 3: DFS Search
         {
             cout << "\nInput character to be searched: ";
             cin >> data;
@@ -64,7 +69,7 @@ int main()
                 cout << data << " is Not Found in the Graph" << endl;
         }
         break;
-        case 4:
+        case 4: // case 4: BFS Search
         {
             cout << "\nInput character to be searched: ";
             cin >> data;
