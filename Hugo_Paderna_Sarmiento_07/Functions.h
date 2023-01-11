@@ -166,6 +166,13 @@ void merge(vector<int>& arr, vector<int>& left, vector<int>& right)
     {
         arr[k++] = right[j++];
     }
+
+    // print array
+    for (int i = 0; i < arr.size(); i++)
+    {
+        cout << arr[i] << " ";
+    }
+    cout << endl;
 }
 
 // merge sort function
@@ -184,6 +191,13 @@ vector<int> merge_sort(vector<int>& arr)
     // declaration of left and right vectors
     vector<int> left(arr.begin(), arr.begin() + mid);
     vector<int> right(arr.begin() + mid, arr.end());
+
+    // print array
+    for (int i = 0; i < arr.size(); i++)
+    {
+        cout << arr[i] << " ";
+    }
+    cout << endl;
 
     // recursive functions
     left = merge_sort(left);
