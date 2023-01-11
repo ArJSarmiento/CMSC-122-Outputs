@@ -3,20 +3,20 @@
         Arnel Jan Sarmiento
         Francis Lloyd Hugo
         Rafael Paderna
-    
+
     The program builds a minimum spanning tree (MST) based from a graph constructed
-    using the information from an input file (PC01_Graph1.in and PC01_Graph2.in). 
+    using the information from an input file (PC01_Graph1.in and PC01_Graph2.in).
     This program uses Prim's Algorithm.
-    
+
     This source code the main runtime of the program as well as function definitions.
 */
 
-// Import dependencies
+// for standard I/O
 #include <iostream>
-#include<fstream>
+#include <fstream>
 using namespace std;
 
-// for standard I/O
+// Import dependencies
 #include <string>
 #include <vector>
 #include <string>
@@ -35,14 +35,14 @@ using namespace std;
 int main()
 {
     int choice, value, data;
-    MST mst;
+    Graph mst;
     Graph graph;
 
     for (choice = 6; choice != 0;) // loop until choice is 0
     {
         summary();
         input_validation(choice);
-        
+
         switch (choice)
         {
         //  Asks the user for the graph file to be loaded

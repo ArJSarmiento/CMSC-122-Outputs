@@ -14,6 +14,7 @@ void input_validation(int &input)
 }
 
 /*
+    Function overload for input_validation.
     This function validates integer inputs. Loops until a valid input is entered given acceptable inputs
     Input: pointer of input integer, pointer of acceptable inputs
     Output: none
@@ -55,45 +56,56 @@ void summary()
     Input: number of .in file
     Output: Graph object from .in file
 */
-Graph load_graph(int data)
+Graph load_graph(int choice)
 {
+    // initialize graph
     Graph graph;
 
+    //  placeholder the lines
     string line;
-    string firstLine;
-    string lastLine;
 
-    string filename = "PC01_Graph" + to_string(data) + ".in";
+    // get file according to input choice
+    string filename = "PC01_Graph" + to_string(choice) + ".in";
     ifstream graphfile(filename);
 
+    // open file and continue if exists
     if (graphfile.is_open())
     {
-        getline(graphfile, firstLine) ;
-        int numLines = stoi(firstLine);
-        
-        for (int i = 0; i < numLines && getline(graphfile, line); i++) {
-            string delimiter = " "; 
-            vector<int> arr;
+        // get number of vertices in the first line
+        getline(graphfile, line);
+        int numLines = stoi(line);
 
-            size_t pos = 0;
-            string token;
-           
-            while ((pos = line.find(delimiter)) != string::npos) {
-                token = line.substr(0, pos);
+        // iterate for given the number of vertices
+        for (int i = 0; i < numLines && getline(graphfile, line); i++)
+        {
+            string delimiter = " "; //split by space
+            vector<int> arr; // initialize vector to store split values
+
+            size_t pos = 0; // initialize position
+            string token; // initialize string to store split values
+
+            // iterate through line and split by delimiter  
+            while ((pos = line.find(delimiter)) != string::npos)
+            {
+                token = line.substr(0, pos); 
                 line.erase(0, pos + delimiter.length());
                 arr.push_back(stoi(token));
             }
             arr.push_back(stoi(line));
 
+            // add edge to graph given values of array
             graph.addEdge(arr[0], arr[1], arr[2]);
         }
 
-        getline(graphfile, lastLine);
-        graph.setStartingNode(stoi(lastLine));
+        // get starting node from last line
+        getline(graphfile, line);
+        graph.setStartingNode(stoi(line));
 
+        // close file
         graphfile.close();
     }
 
+    // return graph
     return graph;
 }
 
@@ -102,7 +114,7 @@ Graph load_graph(int data)
     Input: Graph Object
     Output: MST Object
 */
-MST *solve_mst(Graph graph)
+Graph *solve_mst(Graph graph)
 {
 }
 
@@ -111,6 +123,6 @@ MST *solve_mst(Graph graph)
     Input:  MST
     Output: null
 */
-void display_mst(MST mst)
+void display_mst(Graph mst)
 {
 }
