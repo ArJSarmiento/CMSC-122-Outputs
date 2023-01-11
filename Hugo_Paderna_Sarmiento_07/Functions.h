@@ -46,6 +46,20 @@ void display_list(vector<int> array)
 }
 
 /*
+    This function iterates through the array and displays the items for sorting
+    Input: none
+    Output: none
+*/
+void display_list_iterative(vector<int> array)
+{
+    for (int i = 0; i < array.size(); i++)
+    {
+        cout << array[i] << " ";
+    }
+    cout << endl;
+}
+
+/*
     This function asks the user for input and adds the number into the array 
     Input: initial array 
     Output: updated array
@@ -217,6 +231,8 @@ vector<int> merge_sort(vector<int>& arr)
 */
 vector<int> selection_sort(vector<int> array)
 {
+    cout << "\nSorting array using Selection Sort: " << endl;
+
     // Get the length of the array
     int length = array.size();
 
@@ -235,6 +251,8 @@ vector<int> selection_sort(vector<int> array)
         int temp = array[min_idx];
         array[min_idx] = array[i];
         array[i] = temp;
+
+        display_list_iterative(array);
     }
     return array;
 }

@@ -11,6 +11,7 @@
 */
 
 // Import dependencies
+#include <bits/stdc++.h>
 #include <iostream>
 using namespace std;
 
@@ -49,8 +50,20 @@ int main()
             break;
         //performs selection sort
         case 3:
+        {
+            clock_t start, end;
+            start = clock();
+
             array = selection_sort(array);
+
+            end = clock();
+            double time_taken = double(end - start) / double(CLOCKS_PER_SEC);
+            cout << "Time taken by program is : " << fixed 
+                << time_taken << setprecision(5);
+            cout << " sec " << endl;
+
             break;
+        }
         // performs merge sort
         case 4:
             array = merge_sort(array);
