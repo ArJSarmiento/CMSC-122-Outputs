@@ -182,11 +182,7 @@ void merge(vector<int>& arr, vector<int>& left, vector<int>& right)
     }
 
     // print array
-    for (int i = 0; i < arr.size(); i++)
-    {
-        cout << arr[i] << " ";
-    }
-    cout << endl;
+    display_list_iterative(arr);
 }
 
 // merge sort function
@@ -207,11 +203,7 @@ vector<int> merge_sort(vector<int>& arr)
     vector<int> right(arr.begin() + mid, arr.end());
 
     // print array
-    for (int i = 0; i < arr.size(); i++)
-    {
-        cout << arr[i] << " ";
-    }
-    cout << endl;
+    display_list_iterative(arr);
 
     // recursive functions
     left = merge_sort(left);

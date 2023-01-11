@@ -66,8 +66,21 @@ int main()
         }
         // performs merge sort
         case 4:
+        {
+            clock_t start, end;
+            start = clock();
+
+            cout << "\nSorting array using Merge Sort: " << endl;
             array = merge_sort(array);
+
+            end = clock();
+            double time_taken = double(end - start) / double(CLOCKS_PER_SEC);
+            cout << "Time taken by program is : " << fixed 
+                << time_taken << setprecision(5);
+            cout << " sec " << endl;
+
             break;
+        }
         //  performs radix sort
         case 5:
             radix_sort(array);
