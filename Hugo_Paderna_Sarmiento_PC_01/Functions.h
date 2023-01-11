@@ -14,6 +14,28 @@ void input_validation(int &input)
 }
 
 /*
+    This function validates integer inputs. Loops until a valid input is entered given acceptable inputs
+    Input: pointer of input integer, pointer of acceptable inputs
+    Output: none
+*/
+void input_validation(int &input, int *acceptable_inputs)
+{
+    while (!(cin >> input))
+    {
+        cout << "Invalid input. Please enter a number: ";
+        cin.clear();
+        cin.ignore(100, '\n');
+    }
+    for (int i = 0; i < sizeof(acceptable_inputs); i++)
+    {
+        if (input == acceptable_inputs[i])
+            return;
+    }
+    cout << "Invalid input. Choices are either 1 or 2: ";
+    input_validation(input, acceptable_inputs);
+}
+
+/*
     This function displays the menu
     Input: none
     Output: none
@@ -50,19 +72,18 @@ Graph load_graph(int data)
         int numLines = stoi(firstLine);
         
         for (int i = 0; i < numLines && getline(graphfile, line); i++) {
-            char arr[3];
-            char separator = ' ';
-            int j = 0;
-            string s; 
-            while (arr[j] != '\0') {
-                if (arr[j] != separator) {
-                    // Append the char to the temp string.
-                    s += arr[j]; 
-                } else {
-                    s.clear();
-                }
-                j++;
+            string delimiter = " "; 
+            vector<int> arr;
+
+            size_t pos = 0;
+            string token;
+           
+            while ((pos = line.find(delimiter)) != string::npos) {
+                token = line.substr(0, pos);
+                line.erase(0, pos + delimiter.length());
+                arr.push_back(stoi(token));
             }
+            arr.push_back(stoi(line));
 
             graph.addEdge(arr[0], arr[1], arr[2]);
         }

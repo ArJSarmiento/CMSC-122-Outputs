@@ -47,13 +47,13 @@ int main()
         {
         //  Asks the user for the graph file to be loaded
         case 1:
+        {
             cout << "\nWhich graph do you like to be loaded? ";
-            while (data!=1 && data !=2)
-            {
-                input_validation(data);
-            }
+            int acceptableValues[] = {1, 2};
+            input_validation(data, acceptableValues);
             graph = load_graph(data);
             break;
+        }
         // Constructs the MST based from the loaded graph.
         case 2:
             // mst = solve_mst(graph);
