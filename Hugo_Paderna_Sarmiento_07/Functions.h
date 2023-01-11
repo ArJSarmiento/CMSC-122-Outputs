@@ -132,7 +132,7 @@ void radix_sort(vector<int> &array)
     // Get maximum element
     int max = getMax(array);
 
-    cout << "\nDisplaying array using Radix Sort: " << endl;
+    cout << "\nSorting array using Radix Sort: " << endl;
     // Apply counting sort to sort elements based on place value.
     for (int place = 1; max / place > 0; place *= 10) 
     {

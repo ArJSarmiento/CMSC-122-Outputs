@@ -83,8 +83,18 @@ int main()
         }
         //  performs radix sort
         case 5:
+        {
+            clock_t start, end;
+            start = clock();
+
             radix_sort(array);
+            end = clock();
+            double time_taken = double(end - start) / double(CLOCKS_PER_SEC);
+            cout << "Time taken by program is : " << fixed 
+                << time_taken << setprecision(5);
+            cout << " sec " << endl;
             break;
+        }
         // Exits the program
         case 0:
             cout << "\nExiting program...";
