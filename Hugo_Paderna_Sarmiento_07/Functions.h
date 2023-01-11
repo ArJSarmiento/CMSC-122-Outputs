@@ -61,13 +61,74 @@ vector<int> add_item(vector<int> array)
 }
 
 /*
-    This function performs radix sort on the array
-    Input: input vector array
+    This functions acquires the largest element from an array
+    Input: input vector array, size of array
+    Output: max element of the array
+*/
+int getMax(vector<int> array) 
+{   
+    int max = array[0];
+
+    // loops through the array to find the maximum element
+    for (int i = 1; i < array.size(); i++) 
+    {
+        if (array[i] > max)
+        max = array[i];
+    } 
+    return max;
+}
+
+/*
+    This functions uses counting sort to sort the elements in the basis of significant places
+    Input: input vector array, size of array, number of array elements
     Output: none
 */
-void radix_sort(vector<int> array)
+void countingSort(vector<int> &array, int place) 
 {
+    // Calculate count of elements
+    const int max = 10;
+    vector<int> output(array.size());
+    int count[max] = {0};
 
+    // Calculate count of elements
+    for (int i = 0; i < array.size(); i++)
+        count[(array[i] / place) % 10]++;
+
+    // Calculate cumulative count
+    for (int i = 1; i < max; i++)
+        count[i] += count[i - 1];
+
+    // Place the elements in sorted order
+    for (int i = array.size() - 1; i >= 0; i--) 
+    {
+        output[count[(array[i] / place) % 10] - 1] = array[i];
+        count[(array[i] / place) % 10]--;
+    }
+
+    array = output;
+}
+
+/*
+    This function performs radix sort on the array
+    Input: input vector array
+    Output: sorted vector array
+*/
+void radix_sort(vector<int> &array)
+{
+    // Get maximum element
+    int max = getMax(array);
+
+    cout << "\nDisplaying array using Radix Sort: " << endl;
+    // Apply counting sort to sort elements based on place value.
+    for (int place = 1; max / place > 0; place *= 10) 
+    {
+        countingSort(array, place);
+        for (int i = 0; i < array.size(); i++)
+        {
+            cout << array[i] << " ";
+        }
+        cout << endl;
+    }
 }
 
 /*
