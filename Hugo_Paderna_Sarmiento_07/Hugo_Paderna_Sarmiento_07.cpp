@@ -53,7 +53,7 @@ int main()
             break;
         // performs merge sort
         case 4:
-            merge_sort(array);
+            array = merge_sort(array);
             break;
         //  performs radix sort
         case 5:

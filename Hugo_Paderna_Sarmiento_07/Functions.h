@@ -70,9 +70,69 @@ void radix_sort(vector<int> array)
 
 }
 
-void merge_sort(vector<int> array)
+/*
+    This function merges two sorted vectors
+    Input: vector array, left and right vectors
+    Output: sorted vector array
+*/
+void merge(vector<int>& arr, vector<int>& left, vector<int>& right) 
 {
+    // sizes of left and right array
+    int leftSize = left.size();
+    int rightSize = right.size();
 
+    // variables
+    int i = 0, j = 0, k = 0;
+
+    // merge two vectors into arr vector
+    while (i < leftSize && j < rightSize) 
+    {
+        if (left[i] < right[j])
+            arr[k++] = left[i++];
+
+        else 
+            arr[k++] = right[j++];
+    }
+
+    // insert remaining elements of left vector
+    while (i < leftSize) 
+    {
+        arr[k++] = left[i++];
+    }
+    
+    // insert remaining elements of right vector
+    while (j < rightSize) 
+    {
+        arr[k++] = right[j++];
+    }
+}
+
+// merge sort function
+vector<int> merge_sort(vector<int>& arr) 
+{
+    // array size
+    int size = arr.size();
+
+    // can't sort if array length < 2
+    if (size < 2) 
+        return arr;
+    
+    // middle of array
+    int mid = size / 2;
+
+    // declaration of left and right vectors
+    vector<int> left(arr.begin(), arr.begin() + mid);
+    vector<int> right(arr.begin() + mid, arr.end());
+
+    // recursive functions
+    left = merge_sort(left);
+    right = merge_sort(right);
+
+    // merge sub-arrays
+    merge(arr, left, right);
+
+    // return
+    return arr;
 }
 
 /*
