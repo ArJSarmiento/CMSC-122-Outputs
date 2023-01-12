@@ -3,10 +3,10 @@
         Arnel Jan Sarmiento
         Francis Lloyd Hugo
         Rafael Paderna
-    
-    This program creates an Array of number. 
-    The user can add, display the list and sort the list.  
-    
+
+    This program creates an Array of integers.
+    The user can add, display the list and sort the list.
+
     This source code the main runtime of the program as well as function definitions.
 */
 
@@ -37,7 +37,7 @@ int main()
     {
         summary();
         input_validation(choice);
-        
+
         switch (choice)
         {
         // Adds item to the array
@@ -48,14 +48,17 @@ int main()
         case 2:
             display_list(array);
             break;
-        //performs selection sort
+        // performs selection sort
         case 3:
         {
+            // start timer
             clock_t start, end;
             start = clock();
 
+            // call function
             array = selection_sort(array);
 
+            // end timer
             end = clock();
             double time_taken = double(end - start) / double(CLOCKS_PER_SEC);
             cout << "Time taken by program is : " << fixed 
@@ -67,12 +70,15 @@ int main()
         // performs merge sort
         case 4:
         {
+            // start timer
             clock_t start, end;
             start = clock();
 
+            // call function
             cout << "\nSorting array using Merge Sort: " << endl;
             array = merge_sort(array);
 
+            // end timer
             end = clock();
             double time_taken = double(end - start) / double(CLOCKS_PER_SEC);
             cout << "Time taken by program is : " << fixed 
@@ -84,15 +90,20 @@ int main()
         //  performs radix sort
         case 5:
         {
+            // start timer
             clock_t start, end;
             start = clock();
 
+            // call function
             radix_sort(array);
+
+            // end timer
             end = clock();
             double time_taken = double(end - start) / double(CLOCKS_PER_SEC);
             cout << "Time taken by program is : " << fixed 
                 << time_taken << setprecision(5);
             cout << " sec " << endl;
+
             break;
         }
         // Exits the program

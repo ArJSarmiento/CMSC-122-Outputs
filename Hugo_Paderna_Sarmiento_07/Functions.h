@@ -20,13 +20,13 @@ void input_validation(int &input)
 */
 void summary()
 {
-    cout <<"\nSorting Demonstration"
-         <<"\n\t[1] Input array" 
-         <<"\n\t[2] Display array"
-         <<"\n\t[3] Perform SELECTION SORT"
-         <<"\n\t[4] Perform MERGE SORT"
-         <<"\n\t[5] Perform RADIX SORT"
-         <<"\n\t[0] Exit"
+    cout << "\nSorting Demonstration"
+         << "\n\t[1] Input array"
+         << "\n\t[2] Display array"
+         << "\n\t[3] Perform SELECTION SORT"
+         << "\n\t[4] Perform MERGE SORT"
+         << "\n\t[5] Perform RADIX SORT"
+         << "\n\t[0] Exit"
          << "\nEnter choice: ";
 }
 
@@ -60,11 +60,10 @@ void display_list_iterative(vector<int> array)
 }
 
 /*
-    This function asks the user for input and adds the number into the array 
-    Input: initial array 
+    This function asks the user for input and adds the number into the array
+    Input: initial array
     Output: updated array
 */
-
 vector<int> add_item(vector<int> array)
 {
     int value;
@@ -79,16 +78,16 @@ vector<int> add_item(vector<int> array)
     Input: input vector array, size of array
     Output: max element of the array
 */
-int getMax(vector<int> array) 
-{   
+int getMax(vector<int> array)
+{
     int max = array[0];
 
     // loops through the array to find the maximum element
-    for (int i = 1; i < array.size(); i++) 
+    for (int i = 1; i < array.size(); i++)
     {
         if (array[i] > max)
-        max = array[i];
-    } 
+            max = array[i];
+    }
     return max;
 }
 
@@ -97,7 +96,7 @@ int getMax(vector<int> array)
     Input: input vector array, size of array, number of array elements
     Output: none
 */
-void countingSort(vector<int> &array, int place) 
+void countingSort(vector<int> &array, int place)
 {
     // Calculate count of elements
     const int max = 10;
@@ -113,7 +112,7 @@ void countingSort(vector<int> &array, int place)
         count[i] += count[i - 1];
 
     // Place the elements in sorted order
-    for (int i = array.size() - 1; i >= 0; i--) 
+    for (int i = array.size() - 1; i >= 0; i--)
     {
         output[count[(array[i] / place) % 10] - 1] = array[i];
         count[(array[i] / place) % 10]--;
@@ -150,7 +149,7 @@ void radix_sort(vector<int> &array)
     Input: vector array, left and right vectors
     Output: sorted vector array
 */
-void merge(vector<int>& arr, vector<int>& left, vector<int>& right) 
+void merge(vector<int> &arr, vector<int> &left, vector<int> &right)
 {
     // sizes of left and right array
     int leftSize = left.size();
@@ -160,23 +159,23 @@ void merge(vector<int>& arr, vector<int>& left, vector<int>& right)
     int i = 0, j = 0, k = 0;
 
     // merge two vectors into arr vector
-    while (i < leftSize && j < rightSize) 
+    while (i < leftSize && j < rightSize)
     {
         if (left[i] < right[j])
             arr[k++] = left[i++];
 
-        else 
+        else
             arr[k++] = right[j++];
     }
 
     // insert remaining elements of left vector
-    while (i < leftSize) 
+    while (i < leftSize)
     {
         arr[k++] = left[i++];
     }
-    
+
     // insert remaining elements of right vector
-    while (j < rightSize) 
+    while (j < rightSize)
     {
         arr[k++] = right[j++];
     }
@@ -186,24 +185,24 @@ void merge(vector<int>& arr, vector<int>& left, vector<int>& right)
 }
 
 // merge sort function
-vector<int> merge_sort(vector<int>& arr) 
+vector<int> merge_sort(vector<int> &arr)
 {
     // array size
     int size = arr.size();
 
+    // print array
+    display_list_iterative(arr);
+
     // can't sort if array length < 2
-    if (size < 2) 
+    if (size < 2)
         return arr;
-    
+
     // middle of array
     int mid = size / 2;
 
     // declaration of left and right vectors
     vector<int> left(arr.begin(), arr.begin() + mid);
     vector<int> right(arr.begin() + mid, arr.end());
-
-    // print array
-    display_list_iterative(arr);
 
     // recursive functions
     left = merge_sort(left);
@@ -240,11 +239,11 @@ vector<int> selection_sort(vector<int> array)
                 min_idx = j;
             }
         }
+        display_list_iterative(array);
         int temp = array[min_idx];
         array[min_idx] = array[i];
         array[i] = temp;
 
-        display_list_iterative(array);
     }
     return array;
 }
