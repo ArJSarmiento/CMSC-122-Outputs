@@ -58,18 +58,12 @@ void summary()
 */
 void display(Graph mst)
 {
-    set<int> visited;
     for (int i = 0; i < mst.nodes.size(); i++)
     {
         for (int j = 0; j < mst.nodes[i]->edges.size(); j++)
         {
             int destination = mst.nodes[i]->edges[j]->destination;
             int source = mst.nodes[i]->edges[j]->source;
-            visited.insert(destination);
-
-            // check if edge is already visited
-            if (mst.nodes[i]->edges[j]->source == mst.nodes[i]->edges[j]->destination)
-                continue;
 
             cout << "(" << source
             << ") -- (" << destination
