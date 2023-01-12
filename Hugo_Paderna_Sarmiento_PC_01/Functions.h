@@ -52,6 +52,33 @@ void summary()
 }
 
 /*
+    This function displays the MST resulting from the process of menu item Solve MST
+    Input:  MST
+    Output: null
+*/
+void display(Graph mst)
+{
+    set<int> visited;
+    for (int i = 0; i < mst.nodes.size(); i++)
+    {
+        for (int j = 0; j < mst.nodes[i]->edges.size(); j++)
+        {
+            int destination = mst.nodes[i]->edges[j]->destination;
+            int source = mst.nodes[i]->edges[j]->source;
+            visited.insert(destination);
+
+            // check if edge is already visited
+            if (mst.nodes[i]->edges[j]->source == mst.nodes[i]->edges[j]->destination)
+                continue;
+
+            cout << "(" << source
+            << ") -- (" << destination
+            << "), W: " << mst.nodes[i]->edges[j]->weight << endl;
+        }
+    }
+}
+
+/*
     This function asks the user for the graph file to be loaded
     Input: number of .in file
     Output: Graph object from .in file
@@ -105,72 +132,67 @@ Graph load_graph(int choice)
         graphfile.close();
     }
 
-    // return graph
     return graph;
 }
 
 /*
-    This function constructs the MST based from the given graph.
+    This function constructs the MST based from the given graph using Prim's Algorithm
     Input: Graph Object
     Output: MST Object
 */
-Graph solve_mst(Graph &graph)
+Graph solve_mst(Graph g)
 {
+    priority_queue<Edge*, vector<Edge*>, greater<Edge*>> pq;
+
+    // Create a set to store the visited nodes
+    set<int> visited;
+
+    // Create a new graph to store the MST
     Graph mst;
 
-    // initialize the starting node of the MST
-    int start = graph.getNode(graph.startNode->value)->value;
-    mst.setStartingNode(start);
+    // Add the starting node to the new graph
+    Node* start = mst.addNode(g.startNode->value);
 
-    // create a set to store the vertices of the MST
-    set<int> mstVertices;
-    mstVertices.insert(start);
+    // Add the starting node to the priority queue
+    pq.push(new Edge(g.startNode->value, g.startNode->value, 0));
 
-    // create a priority queue to store the edges of the MST
-    priority_queue<Graph::Edge, vector<Graph::Edge>, greater<Graph::Edge>> mstEdges;
+    // While the priority queue is not empty
+    while (!pq.empty()) {
+        // Extract the edge with the lowest weight
+        Edge* e = pq.top();
+        pq.pop();
 
-    // insert all edges connected to the starting node into the priority queue
-    for (Graph::Edge *edge : graph.getNode(start)->edges)
-    {
-        mstEdges.push(*edge);
-    }
+        // If both nodes of the edge have not been visited
+        if (visited.find(e->source) == visited.end() || visited.find(e->destination) == visited.end()) {
 
-    // while the MST is not complete
-    while (mstVertices.size() < graph.nodes.size())
-    {
-        // get the edge with the lowest weight
-        Graph::Edge edge = mstEdges.top();
-        mstEdges.pop();
+            // Add the destination node to the set of visited nodes
+            visited.insert(e->destination);
 
-        // get the destination vertex of the edge
-        int dest = edge.destination;
+            // If the source node is not in the new graph, add it
+            if (mst.getNode(e->source) == nullptr) {
+                mst.addNode(e->source);
+            }
 
-        // if the destination vertex is not in the MST
-        if (mstVertices.find(dest) == mstVertices.end())
-        {
-            // add the destination vertex to the MST
-            mstVertices.insert(dest);
+            // If the destination node is not in the new graph, add it
+            if (mst.getNode(e->destination) == nullptr) {
+                mst.addNode(e->destination);
+            }
 
-            // add the edge to the MST
-            mst.addEdge(edge.source, edge.destination, edge.weight);
+            // Add the edge to the new graph
+            mst.addEdge(e->source, e->destination, e->weight);
 
-            // insert all edges connected to the destination vertex into the priority queue
-            for (Graph::Edge *edge : graph.getNode(dest)->edges)
-            {
-                mstEdges.push(*edge);
+            // For each edge connected to the destination node
+            for (auto edge : g.getNode(e->destination)->edges) {
+                // If the destination node of the edge is not in the set of visited nodes
+                if (visited.find(edge->destination) == visited.end()) {
+                    // Add the edge to the priority queue
+                    pq.push(edge);
+                }
             }
         }
     }
-    cout << "The Mininum Spanning Tree has been constructed" << endl;
+
+    cout << "\nThe Mininum Spanning Tree has been constructed." << endl;
 
     return mst;
-}
-
-/*
-    This function displays the MST resulting from the process of menu item Solve MST
-    Input:  MST
-    Output: null
-*/
-void display_mst(Graph mst)
-{
 }

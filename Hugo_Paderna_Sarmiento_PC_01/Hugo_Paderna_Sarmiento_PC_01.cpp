@@ -51,6 +51,9 @@ int main()
             int acceptableValues[] = {1, 2};
             input_validation(data, acceptableValues);
             graph = load_graph(data);
+
+            cout << "\nThe Loaded Graph is: " << endl;
+            display(graph);
             break;
         }
         // Constructs the MST based from the loaded graph.
@@ -59,8 +62,19 @@ int main()
             break;
         // Displays the MST resulting from the process of menu item Solve MST
         case 3:
-            // display_mst(mst);
+        {
+            // Checks if the MST has been constructed
+            if (mst.nodes.size() == 0)
+            {
+                cout << "\nPlease construct the MST first.\n";
+                continue;
+            }
+            
+            cout << "\nThe Minimum Spanning Tree is: " << endl;
+            display(mst);
+        
             break;
+        }
         // Exits the program
         case 0:
             cout << "\nExiting program...";

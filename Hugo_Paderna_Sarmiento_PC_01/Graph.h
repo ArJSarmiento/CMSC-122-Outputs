@@ -1,43 +1,41 @@
+    // Edge struct for representing an edge in the graph
+class Edge
+{
+public:
+    int source;
+    int destination;
+    int weight;
+
+    Edge(int src, int dest, int wgt)
+    {
+        source = src;
+        destination = dest;
+        weight = wgt;
+    }
+};
+
+// Node struct for representing a node in the graph
+class Node
+{
+public:
+    int value;
+    vector<Edge *> edges;
+
+    Node(int val)
+    {
+        value = val;
+    }
+};
+
 /*
     Class definition for Graph
 */
 class Graph
 {
-private:
-    // Edge struct for representing an edge in the graph
-    class Edge
-    {
-    public:
-        int source;
-        int destination;
-        int weight;
-
-        Edge(int src, int dest, int wgt)
-        {
-            source = src;
-            destination = dest;
-            weight = wgt;
-        }
-    };
-
-    // Node struct for representing a node in the graph
-    class Node
-    {
-    public:
-        int value;
-        vector<Edge *> edges;
-
-        Node(int val)
-        {
-            value = val;
-        }
-    };
-
-    // List for storing all of the nodes in the graph
+public:
     vector<Node *> nodes;
     Node *startNode;
 
-public:
     /*
         This function adds a node to the graph.
         Input: value of node
@@ -79,7 +77,7 @@ public:
     void addEdge(int value1, int value2, int weight)
     {
         Node *node1 = getNode(value1);
-        Node *node2 = getNode(value2);
+        Node *node2 = getNode(value2);    
 
         // creates an edge between the two vertices
         Edge *edge1 = new Edge(node1->value, node2->value, weight);
