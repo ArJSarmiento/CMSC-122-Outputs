@@ -114,8 +114,56 @@ Graph load_graph(int choice)
     Input: Graph Object
     Output: MST Object
 */
-Graph *solve_mst(Graph graph)
+Graph solve_mst(Graph &graph)
 {
+    Graph mst;
+
+    // initialize the starting node of the MST
+    int start = graph.getNode(graph.startNode->value)->value;
+    mst.setStartingNode(start);
+
+    // create a set to store the vertices of the MST
+    set<int> mstVertices;
+    mstVertices.insert(start);
+
+    // create a priority queue to store the edges of the MST
+    priority_queue<Graph::Edge, vector<Graph::Edge>, greater<Graph::Edge>> mstEdges;
+
+    // insert all edges connected to the starting node into the priority queue
+    for (Graph::Edge *edge : graph.getNode(start)->edges)
+    {
+        mstEdges.push(*edge);
+    }
+
+    // while the MST is not complete
+    while (mstVertices.size() < graph.nodes.size())
+    {
+        // get the edge with the lowest weight
+        Graph::Edge edge = mstEdges.top();
+        mstEdges.pop();
+
+        // get the destination vertex of the edge
+        int dest = edge.destination;
+
+        // if the destination vertex is not in the MST
+        if (mstVertices.find(dest) == mstVertices.end())
+        {
+            // add the destination vertex to the MST
+            mstVertices.insert(dest);
+
+            // add the edge to the MST
+            mst.addEdge(edge.source, edge.destination, edge.weight);
+
+            // insert all edges connected to the destination vertex into the priority queue
+            for (Graph::Edge *edge : graph.getNode(dest)->edges)
+            {
+                mstEdges.push(*edge);
+            }
+        }
+    }
+    cout << "The Mininum Spanning Tree has been constructed" << endl;
+
+    return mst;
 }
 
 /*

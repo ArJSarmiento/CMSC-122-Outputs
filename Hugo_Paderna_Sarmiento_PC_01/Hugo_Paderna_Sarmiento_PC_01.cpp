@@ -55,7 +55,7 @@ int main()
         }
         // Constructs the MST based from the loaded graph.
         case 2:
-            // mst = solve_mst(graph);
+            mst = solve_mst(graph);
             break;
         // Displays the MST resulting from the process of menu item Solve MST
         case 3:
