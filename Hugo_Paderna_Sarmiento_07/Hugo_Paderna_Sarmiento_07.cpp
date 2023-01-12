@@ -18,9 +18,6 @@ using namespace std;
 // for standard I/O
 #include <string>
 #include <vector>
-#include <queue>
-#include <stack>
-#include <set>
 #include "Functions.h"
 
 /*
@@ -56,7 +53,7 @@ int main()
             start = clock();
 
             // call function
-            array = selection_sort(array);
+            selection_sort(array);
 
             // end timer
             end = clock();
@@ -76,7 +73,8 @@ int main()
 
             // call function
             cout << "\nSorting array using Merge Sort: " << endl;
-            array = merge_sort(array);
+
+            merge_sort(array);
 
             // end timer
             end = clock();

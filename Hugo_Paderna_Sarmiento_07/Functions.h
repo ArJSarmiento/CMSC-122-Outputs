@@ -126,7 +126,7 @@ void countingSort(vector<int> &array, int place)
     Input: input vector array
     Output: sorted vector array
 */
-void radix_sort(vector<int> &array)
+void radix_sort(vector<int> array)
 {
     // Get maximum element
     int max = getMax(array);
@@ -184,8 +184,12 @@ void merge(vector<int> &arr, vector<int> &left, vector<int> &right)
     display_list_iterative(arr);
 }
 
-// merge sort function
-vector<int> merge_sort(vector<int> &arr)
+/*
+    This function performs merge sort on the array
+    Input: input vector array
+    Output: sorted vector array
+*/
+vector<int> merge_sort_helper(vector<int> &arr)
 {
     // array size
     int size = arr.size();
@@ -205,8 +209,8 @@ vector<int> merge_sort(vector<int> &arr)
     vector<int> right(arr.begin() + mid, arr.end());
 
     // recursive functions
-    left = merge_sort(left);
-    right = merge_sort(right);
+    left = merge_sort_helper(left);
+    right = merge_sort_helper(right);
 
     // merge sub-arrays
     merge(arr, left, right);
@@ -216,11 +220,24 @@ vector<int> merge_sort(vector<int> &arr)
 }
 
 /*
-    This function performs selection sort on the array
+    This function performs merge sort on the array
+    and prints steps
     Input: input vector array
-    Output: sorted vector array
+    Output: none
 */
-vector<int> selection_sort(vector<int> array)
+void merge_sort(vector<int> &arr)
+{
+    vector<int> new_arr =  arr;
+    merge_sort_helper(new_arr);
+}
+
+/*
+    This function performs selection sort on the array
+    and prints steps
+    Input: input vector array
+    Output: none 
+*/
+void selection_sort(vector<int> array)
 {
     cout << "\nSorting array using Selection Sort: " << endl;
 
@@ -245,5 +262,4 @@ vector<int> selection_sort(vector<int> array)
         array[i] = temp;
 
     }
-    return array;
 }
