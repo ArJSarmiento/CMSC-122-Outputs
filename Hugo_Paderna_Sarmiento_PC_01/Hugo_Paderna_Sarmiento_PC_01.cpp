@@ -58,7 +58,16 @@ int main()
         }
         // Constructs the MST based from the loaded graph.
         case 2:
+        {
+            // Checks if the a graph has been loaded
+            if (graph.nodes.size() == 0)
+            {
+                cout << "\nPlease load a graph first.\n";
+                continue;
+            }
             mst = solve_mst(graph);
+        }
+            
             break;
         // Displays the MST resulting from the process of menu item Solve MST
         case 3:
