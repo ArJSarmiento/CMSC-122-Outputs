@@ -53,22 +53,22 @@ void summary()
 
 /*
     This function displays the MST resulting from the process of menu item Solve MST
-    Input:  MST
+    Input:  Graph object
     Output: null
 */
-void display(Graph mst)
-{
-    for (int i = 0; i < mst.nodes.size(); i++)
-    {
-        for (int j = 0; j < mst.nodes[i]->edges.size(); j++)
-        {
-            int destination = mst.nodes[i]->edges[j]->destination;
-            int source = mst.nodes[i]->edges[j]->source;
-
-            cout << "(" << source
-            << ") -- (" << destination
-            << "), W: " << mst.nodes[i]->edges[j]->weight << endl;
+void display(Graph g) {
+    set<pair<int,int>> visited;
+    for (int i = 0; i < g.nodes.size(); i++) {
+        cout << g.nodes[i]->value << ": ";
+        for (int j = 0; j < g.nodes[i]->edges.size(); j++) {
+            // check if the edge has been outputted before
+            if (visited.find(make_pair(g.nodes[i]->value, g.nodes[i]->edges[j]->destination)) == visited.end()) {
+                cout << g.nodes[i]->edges[j]->destination << "(" << g.nodes[i]->edges[j]->weight << ") ";
+                int destination = g.nodes[i]->edges[j]->destination;
+                visited.insert(make_pair(g.nodes[i]->value, destination));
+            }
         }
+        cout << endl;
     }
 }
 
@@ -136,53 +136,36 @@ Graph load_graph(int choice)
 */
 Graph solve_mst(Graph g)
 {
-    priority_queue<Edge*, vector<Edge*>, greater<Edge*>> pq;
-
-    // Create a set to store the visited nodes
-    set<int> visited;
-
-    // Create a new graph to store the MST
     Graph mst;
+    set<int> visited;
+    priority_queue<Edge*, vector<Edge*>, CompareWeight> pq;
 
-    // Add the starting node to the new graph
-    Node* start = mst.addNode(g.startNode->value);
+    // add the starting node to the MST
+    mst.addNode(g.startNode->value);
+    visited.insert(g.startNode->value);
 
-    // Add the starting node to the priority queue
-    pq.push(new Edge(g.startNode->value, g.startNode->value, 0));
+    // add all edges starting from starting node to priority queue
+    for (int i = 0; i < g.startNode->edges.size(); i++) {
+        pq.push(g.startNode->edges[i]);
+    }
 
-    // While the priority queue is not empty
     while (!pq.empty()) {
-        // Extract the edge with the lowest weight
-        Edge* e = pq.top();
+        Edge* edge = pq.top();
         pq.pop();
 
-        // If both nodes of the edge have not been visited
-        if (visited.find(e->source) == visited.end() || visited.find(e->destination) == visited.end()) {
+        // check if the destination of the edge is already in the MST
+        if (visited.find(edge->destination) != visited.end()) {
+            continue;
+        }
 
-            // Add the destination node to the set of visited nodes
-            visited.insert(e->destination);
+        // add the destination of the edge to the MST
+        mst.addNode(edge->destination);
+        mst.addEdge(edge->source, edge->destination, edge->weight);
+        visited.insert(edge->destination);
 
-            // If the source node is not in the new graph, add it
-            if (mst.getNode(e->source) == nullptr) {
-                mst.addNode(e->source);
-            }
-
-            // If the destination node is not in the new graph, add it
-            if (mst.getNode(e->destination) == nullptr) {
-                mst.addNode(e->destination);
-            }
-
-            // Add the edge to the new graph
-            mst.addEdge(e->source, e->destination, e->weight);
-
-            // For each edge connected to the destination node
-            for (auto edge : g.getNode(e->destination)->edges) {
-                // If the destination node of the edge is not in the set of visited nodes
-                if (visited.find(edge->destination) == visited.end()) {
-                    // Add the edge to the priority queue
-                    pq.push(edge);
-                }
-            }
+        // add all edges from the new node to the priority queue
+        for (int i = 0; i < g.getNode(edge->destination)->edges.size(); i++) {
+            pq.push(g.getNode(edge->destination)->edges[i]);
         }
     }
 

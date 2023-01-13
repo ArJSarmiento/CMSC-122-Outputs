@@ -1,4 +1,4 @@
-    // Edge struct for representing an edge in the graph
+// Edge struct for representing an edge in the graph
 class Edge
 {
 public:
@@ -96,5 +96,14 @@ public:
     void setStartingNode(int value)
     {
         startNode = getNode(value);
+    }
+};
+
+// class for comparing the weights of the edges
+class CompareWeight {
+public:
+    // returns true if the weight of e1 is greater than the weight of e2
+    bool operator()(const Edge* e1, const Edge* e2) const {
+        return e1->weight > e2->weight;
     }
 };
